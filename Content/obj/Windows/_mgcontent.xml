@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/OS/Desktop/game programing/Bobble Game Mid/Content/Ball1.PNG</File>
+    <File>C:/Users/OS/Desktop/game programing/Bobble Game Mid/Content/ball2.png</File>
+    <File>C:/Users/OS/Desktop/game programing/Bobble Game Mid/Content/bg_1.png</File>
+    <File>C:/Users/OS/Desktop/game programing/Bobble Game Mid/Content/bg_2.png</File>
+    <File>C:/Users/OS/Desktop/game programing/Bobble Game Mid/Content/border.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

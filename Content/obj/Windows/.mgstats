@@ -1,0 +1,7 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/User/Desktop/Bobble Game Mid/Content/a286546b12c14c7.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/gun.xnb","TextureProcessor","Texture2DContent",1600,138085,0.1665219
+"C:/Users/User/Desktop/Bobble Game Mid/Content/Ball1.PNG","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/Ball1.xnb","TextureProcessor","Texture2DContent",383,1109,0.0069807
+"C:/Users/User/Desktop/Bobble Game Mid/Content/ball2.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/ball2.xnb","TextureProcessor","Texture2DContent",237,4181,0.0109999
+"C:/Users/User/Desktop/Bobble Game Mid/Content/bg_1.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/bg_1.xnb","TextureProcessor","Texture2DContent",16420,654725,0.0322284
+"C:/Users/User/Desktop/Bobble Game Mid/Content/bg_2.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/bg_2.xnb","TextureProcessor","Texture2DContent",78647,2068673,0.0652763
+"C:/Users/User/Desktop/Bobble Game Mid/Content/border.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/border.xnb","TextureProcessor","Texture2DContent",40313,640085,0.1776316
