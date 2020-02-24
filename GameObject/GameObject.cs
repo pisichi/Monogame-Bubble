@@ -16,7 +16,7 @@ namespace Bobble_Game_Mid.gameObject
         public float _rotation;
         public Vector2 Scale;
         public Vector2 Velocity;
-        public float RotationVelocity = 1f;
+        public float RotationVelocity = 3f;
         public float LinearVelocity = 4f;
 
 
@@ -36,15 +36,13 @@ namespace Bobble_Game_Mid.gameObject
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width + (int)Origin.X , _texture.Height + (int)Origin.Y);
             }
         }
 
         public GameObject(Texture2D texture)
         {
             _texture = texture;
-            //Position = Vector2.Zero;
-            //Scale = Vector2.One;
             Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
 
         }
@@ -55,7 +53,7 @@ namespace Bobble_Game_Mid.gameObject
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(_texture, Position, null, _color, _rotation, Origin, 1, SpriteEffects.None, 0);
+         
         }
 
         public virtual void Reset()
@@ -71,6 +69,7 @@ namespace Bobble_Game_Mid.gameObject
         }
 
 
-    
-}
+
+
+    }
 }

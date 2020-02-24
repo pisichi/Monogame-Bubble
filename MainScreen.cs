@@ -67,6 +67,7 @@ namespace Bobble_Game_Mid
             _bg2 = this.Content.Load<Texture2D>("bg_2");
             _border = this.Content.Load<Texture2D>("border");
             _gun = this.Content.Load<Texture2D>("gun");
+         
 
 
             _gameObjects = new List<GameObject>()

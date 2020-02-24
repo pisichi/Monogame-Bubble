@@ -48,7 +48,7 @@ namespace Bobble_Game_Mid.gameObject
             bubble.Position = this.Position;
             bubble.LinearVelocity = 0;
             bubble._color = this.GetRandomColor();
-            gameObjects.Add(bubble);
+            
 
 
 
@@ -57,6 +57,7 @@ namespace Bobble_Game_Mid.gameObject
 
                 bubble.LinearVelocity = this.LinearVelocity * 5;
                 shooting = true;
+                gameObjects.Add(bubble);
             }
         }
 

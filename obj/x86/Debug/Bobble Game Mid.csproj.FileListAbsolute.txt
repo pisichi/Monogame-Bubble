@@ -54,3 +54,32 @@ C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Debug\Bobble Game Mid.csproj.CopyC
 C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Debug\Bobble Game Mid.exe
 C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Debug\Bobble Game Mid.pdb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\gun.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\Ball1.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\ball2.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\bg_1.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\bg_2.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\border.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\gun.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Bobble Game Mid.exe
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Bobble Game Mid.pdb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.csprojAssemblyReference.cache
+C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.csproj.CopyComplete
+C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.exe
+C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.pdb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\hitbox.xnb
