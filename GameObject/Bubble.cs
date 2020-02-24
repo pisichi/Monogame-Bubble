@@ -25,6 +25,16 @@ namespace Bobble_Game_Mid.gameObject
         Random rnd = new Random();
 
 
+        public Rectangle Rectangle
+        {
+            get
+            {
+
+                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+            }
+        }
+
+
         public Bubble(Texture2D texture) : base(texture)
         {
             Scale = new Vector2(Singleton.BOBBLESIZE /texture.Width ,Singleton.BOBBLESIZE /texture.Width);
@@ -39,29 +49,38 @@ namespace Bobble_Game_Mid.gameObject
 
             foreach (var sprite in gameObjects)
             {
-                if (sprite == this)
-                    continue;
+                
 
                 if ((this.Direction.X / this.LinearVelocity > 0 && this.IsTouchingLeft(sprite)) ||
                     (this.Direction.X / this.LinearVelocity < 0 & this.IsTouchingRight(sprite)))
                 {
-                    this.Direction.X *= -1;
+
+                    //if (this.IsAcive)
+                    //{
+                    //    this.Direction.X *= -1;
+                    //}
+                    //else
+                    //this.Direction.X *= -1;
                     //LinearVelocity = 0;
-                    //IsAcive = false;
+                    IsAcive = false;
 
                 }
 
                 if ((this.Direction.Y / this.LinearVelocity > 0 && this.IsTouchingTop(sprite)) ||
                     (this.Direction.Y / this.LinearVelocity < 0 & this.IsTouchingBottom(sprite)))
                 {
-                    this.Direction.Y *= -1;
+                    //if (this.IsAcive)
+                    //{
+                    //    this.Direction.Y *= -1;
+                    //}
+                    //else
+                    //this.Direction.Y *= -1;
                     //LinearVelocity = 0;
-                    //IsAcive = false;
+                    IsAcive = false;
 
                 }
                     
             }
-
 
 
 
@@ -70,19 +89,19 @@ namespace Bobble_Game_Mid.gameObject
 
             Position += Direction * LinearVelocity;
 
-            if(Position.X - Origin.X <= Singleton.BOBBLESIZE * 2 && Direction.X / LinearVelocity < Singleton.BOBBLESIZE * 2)
+            if(Position.X - Origin.X <= 200 && Direction.X / LinearVelocity <200)
             {
                 Direction.X *= -1;
             }
 
-            else if (Position.Y - Origin.Y <= Singleton.BOBBLESIZE && Direction.Y / LinearVelocity < Singleton.BOBBLESIZE)
+            else if (Position.Y - Origin.Y <= 60 && Direction.Y / LinearVelocity < 60)
             {
                 //LinearVelocity = 0;
                 //IsRemove = true;
                 IsAcive = false;
             }
 
-            else if (Position.X + Origin.X >= Singleton.BoardWidth - (Singleton.BOBBLESIZE * 2) && Direction.X / LinearVelocity < Singleton.BoardWidth - (Singleton.BOBBLESIZE * 4))
+            else if (Position.X + Origin.X >= Singleton.BoardWidth + 200  && Direction.X / LinearVelocity < Singleton.BoardWidth + 200 )
             {
                 Direction.X *= -1;
             }
@@ -91,11 +110,10 @@ namespace Bobble_Game_Mid.gameObject
 
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch) 
         {
 
-            //spriteBatch.Draw(_hitbox, new Rectangle((int)Position.X, (int)Position.Y, _texture.Width + (int)Origin.X, _texture.Height + (int)Origin.Y), Color.White);
-            spriteBatch.Draw(_texture, Position, null, _color, _rotation, Origin, Scale * 2f , SpriteEffects.None , 0);
+            spriteBatch.Draw(_texture, Position, null, _color, _rotation, Origin, 1f, SpriteEffects.None , 0);
             base.Draw(spriteBatch);
         }
 
@@ -133,6 +151,39 @@ namespace Bobble_Game_Mid.gameObject
               this.Rectangle.Right > sprite.Rectangle.Left &&
               this.Rectangle.Left < sprite.Rectangle.Right;
         }
+
+
+        //protected bool IsTouchingLeft(GameObject gameObject)
+        //{
+        //    return this.Rectangle.Right > gameObject.Rectangle.Left &&
+        //            this.Rectangle.Left < gameObject.Rectangle.Left &&
+        //            this.Rectangle.Bottom > gameObject.Rectangle.Top &&
+        //            this.Rectangle.Top < gameObject.Rectangle.Bottom;
+        //}
+
+        //protected bool IsTouchingRight(GameObject gameObject)
+        //{
+        //    return this.Rectangle.Right > gameObject.Rectangle.Right &&
+        //            this.Rectangle.Left < gameObject.Rectangle.Right &&
+        //            this.Rectangle.Bottom > gameObject.Rectangle.Top &&
+        //            this.Rectangle.Top < gameObject.Rectangle.Bottom;
+        //}
+
+        //protected bool IsTouchingTop(GameObject gameObject)
+        //{
+        //    return this.Rectangle.Right > gameObject.Rectangle.Left &&
+        //            this.Rectangle.Left < gameObject.Rectangle.Right &&
+        //            this.Rectangle.Bottom > gameObject.Rectangle.Top &&
+        //            this.Rectangle.Top < gameObject.Rectangle.Top;
+        //}
+
+        //protected bool IsTouchingBottom(GameObject gameObject)
+        //{
+        //    return this.Rectangle.Right > gameObject.Rectangle.Left &&
+        //            this.Rectangle.Left < gameObject.Rectangle.Right &&
+        //            this.Rectangle.Bottom > gameObject.Rectangle.Bottom &&
+        //            this.Rectangle.Top < gameObject.Rectangle.Bottom;
+        //}
 
         #endregion
 

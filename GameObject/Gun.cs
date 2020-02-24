@@ -51,11 +51,10 @@ namespace Bobble_Game_Mid.gameObject
             
 
 
-
             if (_currentkey.IsKeyDown(Keys.Space) && _previouskey.IsKeyUp(Keys.Space))
             {   
 
-                bubble.LinearVelocity = this.LinearVelocity * 5;
+                bubble.LinearVelocity = this.LinearVelocity * 7;
                 shooting = true;
                 gameObjects.Add(bubble);
             }

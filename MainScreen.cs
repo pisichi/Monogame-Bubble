@@ -20,8 +20,7 @@ namespace Bobble_Game_Mid
         Random rnd = new Random();
 
         Texture2D _bubble;
-        Texture2D _bg1;
-        Texture2D _bg2;
+        Texture2D _bg;
         Texture2D _border;
         Texture2D _gun;
 
@@ -62,9 +61,8 @@ namespace Bobble_Game_Mid
         {
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            _bubble = this.Content.Load<Texture2D>("ball2");
-            _bg1 = this.Content.Load<Texture2D>("bg_1");
-            _bg2 = this.Content.Load<Texture2D>("bg_2");
+            _bubble = this.Content.Load<Texture2D>("ball");
+            _bg = this.Content.Load<Texture2D>("bg");
             _border = this.Content.Load<Texture2D>("border");
             _gun = this.Content.Load<Texture2D>("gun");
          
@@ -74,7 +72,7 @@ namespace Bobble_Game_Mid
             {
                 new Gun(_gun)
                 {
-                    Position = new Vector2(Singleton.BoardWidth/2,Singleton.BoardHeight-100),
+                    Position = new Vector2(Singleton.SCREENWIDTH/2,Singleton.SCREENHEIGHT-100),
                     Bubble = new Bubble(_bubble)
                 }
             };
@@ -98,19 +96,19 @@ namespace Bobble_Game_Mid
 
             //for (int i = 0; i < Singleton.BoardHeight / 3; i += Singleton.BOBBLESIZE)
             //{
-            //    for (int j = 0; j < Singleton.BoardWidth - (Singleton.BOBBLESIZE * 4); j += Singleton.BOBBLESIZE)
+            //    for (int j = 0; j < Singleton.BoardHeight - 200; j += Singleton.BOBBLESIZE)
             //    {
 
             //        bubble[i, j] = new Bubble(_bubble)
             //        {
-            //        bubble[i, j].Direction = this.Direction;
-            //        bubble[i, j].Position = this.Position;
-            //        bubble[i, j].LinearVelocity = 0;
-            //        bubble[i, j]._color = this.GetRandomColor();
+            //        bubble[i, j].direction = this.direction;
+            //        bubble[i, j].position = this.position;
+            //        bubble[i, j].linearvelocity = 0;
+            //        bubble[i, j]._color = this.getrandomcolor();
             //    };
-            //        _gameObjects.Add(bubble[i,j]);
-            //    }
+            //    _gameobjects.add(bubble[i, j]);
             //}
+        
 
 
             foreach (var gameobject in _gameObjects.ToArray())
@@ -143,16 +141,10 @@ namespace Bobble_Game_Mid
 
             spriteBatch.Begin();
 
-            spriteBatch.Draw(_bg2, destinationRectangle: new Rectangle(0, 0, Singleton.BoardWidth, Singleton.BoardHeight));
+            spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
 
 
-            if (Singleton.Instance.CurrentGameState == Singleton.GameState.GameTryAgain)
-            {
-                spriteBatch.Draw(_border, destinationRectangle: new Rectangle(Singleton.BOBBLESIZE * 2, Singleton.BOBBLESIZE, Singleton.BoardWidth - (Singleton.BOBBLESIZE * 4), Singleton.BoardHeight));
-            }
-
-
-            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(Singleton.BOBBLESIZE * 2, Singleton.BOBBLESIZE, Singleton.BoardWidth - (Singleton.BOBBLESIZE * 4), Singleton.BoardHeight));
+            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(200, Singleton.BOBBLESIZE, Singleton.BoardWidth , Singleton.BoardHeight+100));
 
 
             foreach (var gameobject in _gameObjects)
@@ -160,7 +152,7 @@ namespace Bobble_Game_Mid
                 gameobject.Draw(spriteBatch);
             }
 
-            //spriteBatch.Draw(_bubble, destinationRectangle: new Rectangle(currentPosX + j, currentPosY + i, Singleton.BOBBLESIZE, Singleton.BOBBLESIZE), color: Color.Yellow);
+          
 
 
             spriteBatch.End();

@@ -11,15 +11,13 @@ namespace Bobble_Game_Mid
     {
         public const int BOBBLESIZE = 60;
 
-        public const int GAMEWIDTH = 8;
-        public const int GAMEHEIGHT = 15;
 
-        public const int SCREENWIDTH = BOBBLESIZE * (GAMEWIDTH + 5);
-        public const int SCREENHEIGHT = BOBBLESIZE * GAMEHEIGHT;
+        public const int BoardWidth = 9 * BOBBLESIZE;
+        public const int BoardHeight = 12 * BOBBLESIZE;
 
+        public const int SCREENWIDTH = BoardWidth + 400;
+        public const int SCREENHEIGHT = BoardHeight + 200;
 
-        public const int BoardWidth = SCREENWIDTH;
-        public const int BoardHeight = SCREENHEIGHT;
 
         public int Score;
         public int Level;

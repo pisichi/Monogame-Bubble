@@ -25,10 +25,6 @@ C:\Users\OS\Desktop\game programing\Bobble Game Mid\bin\Windows\x86\Debug\Conten
 C:\Users\OS\Desktop\game programing\Bobble Game Mid\bin\Windows\x86\Debug\Content\bg_2.xnb
 C:\Users\OS\Desktop\game programing\Bobble Game Mid\bin\Windows\x86\Debug\Content\border.xnb
 C:\Users\OS\Desktop\game programing\Bobble Game Mid\bin\Windows\x86\Debug\Content\ball2.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\Ball1.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\ball2.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\bg_1.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\bg_2.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\border.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Bobble Game Mid.exe
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Bobble Game Mid.pdb
@@ -83,3 +79,5 @@ C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.csproj.CopyCom
 C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.exe
 C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.pdb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\hitbox.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\ball.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\bg.xnb
