@@ -36,8 +36,8 @@ namespace Bobble_Game_Mid.gameObject
         {
             get
             {
-               
-                return new Rectangle((int)Position.X , (int)Position.Y, _texture.Width , _texture.Height);
+
+                return new Rectangle((int)Position.X -30 , (int)Position.Y - 30, _texture.Width, _texture.Height);
             }
         }
 

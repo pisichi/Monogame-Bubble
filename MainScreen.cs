@@ -88,24 +88,13 @@ namespace Bobble_Game_Mid
                 {
                     bubble = new Bubble(_bubble)
                     {
-                        Position = new Vector2(200+ 30+ i * Singleton.BOBBLESIZE,100+ j * Singleton.BOBBLESIZE),
+                        Position = new Vector2(185+ 30+ i * Singleton.BOBBLESIZE + ((j % 2) == 0 ? 0 : 30), 100+ j * Singleton.BOBBLESIZE),
                         LinearVelocity = 0,
                         _color = GetRandomColor(),
                     };
                     _gameObjects.Add(bubble);
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
 
         }
 
@@ -121,11 +110,6 @@ namespace Bobble_Game_Mid
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
-
-
-
-
-
 
             foreach (var gameobject in _gameObjects.ToArray())
             {
@@ -158,8 +142,6 @@ namespace Bobble_Game_Mid
             spriteBatch.Begin();
 
             spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
-
-
             spriteBatch.Draw(_border, destinationRectangle: new Rectangle(200, Singleton.BOBBLESIZE, Singleton.BoardWidth , Singleton.BoardHeight+100));
 
 
@@ -180,25 +162,6 @@ namespace Bobble_Game_Mid
             base.Draw(gameTime);
         }
 
-
-        //private void AddBubble(List<GameObject> gameObjects)
-        //{
-        //    var bubble = Bubble.Clone() as Bubble;
-        //    bubble.Direction = this.Direction;
-        //    bubble.Position = this.Position;
-        //    bubble.LinearVelocity = 0;
-        //    bubble._color = this.GetRandomColor();
-        //    gameObjects.Add(bubble);
-
-
-
-        //    if (_currentkey.IsKeyDown(Keys.Space) && _previouskey.IsKeyUp(Keys.Space))
-        //    {
-
-        //        bubble.LinearVelocity = this.LinearVelocity * 5;
-        //        shooting = true;
-        //    }
-        //}
 
 
         public Color GetRandomColor()
