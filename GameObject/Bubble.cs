@@ -17,6 +17,7 @@ namespace Bobble_Game_Mid.gameObject
         SpriteBatch spriteBatch;
 
         bool IsAcive = true;
+        public bool Isshooting;
 
         Texture2D _texture2;
 
@@ -47,38 +48,38 @@ namespace Bobble_Game_Mid.gameObject
         {
 
 
-            foreach (var sprite in gameObjects)
-            {
+                foreach (var sprite in gameObjects)
+                {
+
+
+                    if ((this.Direction.X / this.LinearVelocity > 0 && this.IsTouchingLeft(sprite)) ||
+                        (this.Direction.X / this.LinearVelocity < 0 & this.IsTouchingRight(sprite)))
+                    {
+
+                        //if (this.IsAcive)
+                        //{
+                        //    this.Direction.X *= -1;
+                        //}
+                        //else
+                        //this.Direction.X *= -1;
+                        //LinearVelocity = 0;
+                        IsAcive = false;
+
+                    }
+
+                    if ((this.Direction.Y / this.LinearVelocity > 0 && this.IsTouchingTop(sprite)) ||
+                        (this.Direction.Y / this.LinearVelocity < 0 & this.IsTouchingBottom(sprite)))
+                    {
+                        //if (this.IsAcive)
+                        //{
+                        //    this.Direction.Y *= -1;
+                        //}
+                        //else
+                        //this.Direction.Y *= -1;
+                        //LinearVelocity = 0;
+                        IsAcive = false;
+                    }
                 
-
-                if ((this.Direction.X / this.LinearVelocity > 0 && this.IsTouchingLeft(sprite)) ||
-                    (this.Direction.X / this.LinearVelocity < 0 & this.IsTouchingRight(sprite)))
-                {
-
-                    //if (this.IsAcive)
-                    //{
-                    //    this.Direction.X *= -1;
-                    //}
-                    //else
-                    //this.Direction.X *= -1;
-                    //LinearVelocity = 0;
-                    IsAcive = false;
-
-                }
-
-                if ((this.Direction.Y / this.LinearVelocity > 0 && this.IsTouchingTop(sprite)) ||
-                    (this.Direction.Y / this.LinearVelocity < 0 & this.IsTouchingBottom(sprite)))
-                {
-                    //if (this.IsAcive)
-                    //{
-                    //    this.Direction.Y *= -1;
-                    //}
-                    //else
-                    //this.Direction.Y *= -1;
-                    //LinearVelocity = 0;
-                    IsAcive = false;
-
-                }
                     
             }
 

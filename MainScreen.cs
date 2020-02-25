@@ -15,7 +15,8 @@ namespace Bobble_Game_Mid
         SpriteBatch spriteBatch;
 
         private List<GameObject> _gameObjects;
-        Bubble [,] bubble = new Bubble[6,9];
+        //Bubble [,] bubble = new Bubble[9,8];
+        Bubble bubble;
 
         Random rnd = new Random();
 
@@ -50,8 +51,12 @@ namespace Bobble_Game_Mid
             graphics.ApplyChanges();
             Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
 
+
+
             decendSpeed = 150;
 
+
+       
             base.Initialize();
 
         }
@@ -65,7 +70,6 @@ namespace Bobble_Game_Mid
             _bg = this.Content.Load<Texture2D>("bg");
             _border = this.Content.Load<Texture2D>("border");
             _gun = this.Content.Load<Texture2D>("gun");
-         
 
 
             _gameObjects = new List<GameObject>()
@@ -76,6 +80,31 @@ namespace Bobble_Game_Mid
                     Bubble = new Bubble(_bubble)
                 }
             };
+
+
+            for (int i = 0; i < 9; i += 1)
+            {
+                for (int j = 0; j < 4; j += 1)
+                {
+                    bubble = new Bubble(_bubble)
+                    {
+                        Position = new Vector2(200+ 30+ i * Singleton.BOBBLESIZE,100+ j * Singleton.BOBBLESIZE),
+                        LinearVelocity = 0,
+                        _color = GetRandomColor(),
+                    };
+                    _gameObjects.Add(bubble);
+                }
+            }
+
+
+
+
+
+
+
+
+
+
 
 
         }
@@ -94,21 +123,8 @@ namespace Bobble_Game_Mid
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
 
 
-            //for (int i = 0; i < Singleton.BoardHeight / 3; i += Singleton.BOBBLESIZE)
-            //{
-            //    for (int j = 0; j < Singleton.BoardHeight - 200; j += Singleton.BOBBLESIZE)
-            //    {
 
-            //        bubble[i, j] = new Bubble(_bubble)
-            //        {
-            //        bubble[i, j].direction = this.direction;
-            //        bubble[i, j].position = this.position;
-            //        bubble[i, j].linearvelocity = 0;
-            //        bubble[i, j]._color = this.getrandomcolor();
-            //    };
-            //    _gameobjects.add(bubble[i, j]);
-            //}
-        
+
 
 
             foreach (var gameobject in _gameObjects.ToArray())
@@ -188,6 +204,7 @@ namespace Bobble_Game_Mid
         public Color GetRandomColor()
         {
             Color _color = Color.Black;
+            Console.WriteLine("GetRand");
             switch (rnd.Next(0, 6))
             {
                 case 0:

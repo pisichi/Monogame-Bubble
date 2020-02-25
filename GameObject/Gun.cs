@@ -11,15 +11,22 @@ namespace Bobble_Game_Mid.gameObject
 {
     class Gun : GameObject
     {
+
+
         public Bubble Bubble;
         Random rnd = new Random();
         bool shooting = true;
         int _currentColor;
+        Color _gunColor;
+        Texture2D _eye;
 
 
         public Gun(Texture2D texture) : base(texture)
         {
+
+            
         }
+
 
         public override void Update(GameTime gameTime,List<GameObject> gameObjects)
         {
@@ -35,7 +42,6 @@ namespace Bobble_Game_Mid.gameObject
 
          
                 AddBubble(gameObjects);
- 
 
 
         }
@@ -48,15 +54,21 @@ namespace Bobble_Game_Mid.gameObject
             bubble.Position = this.Position;
             bubble.LinearVelocity = 0;
             bubble._color = this.GetRandomColor();
+            //bubble.Isshooting = false;
+
             
+
 
 
             if (_currentkey.IsKeyDown(Keys.Space) && _previouskey.IsKeyUp(Keys.Space))
             {   
 
                 bubble.LinearVelocity = this.LinearVelocity * 7;
+                //bubble.Isshooting = true;
                 shooting = true;
                 gameObjects.Add(bubble);
+
+
             }
         }
 
@@ -69,6 +81,8 @@ namespace Bobble_Game_Mid.gameObject
                 _currentColor = rnd.Next(0, 6);
                 shooting = false;
              }
+
+              //_currentColor = rnd.Next(0, 6);
 
             switch (_currentColor)
             {
@@ -91,13 +105,14 @@ namespace Bobble_Game_Mid.gameObject
                     _color = Color.Purple;
                     break;
             }
+            _gunColor = _color;
             return _color;
         }
 
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Position, null, Color.White , _rotation, Origin, 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(_texture, Position, null, _gunColor, _rotation, Origin, 1, SpriteEffects.None, 0);
             base.Draw(spriteBatch);
         }
     }
