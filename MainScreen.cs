@@ -88,8 +88,8 @@ namespace Bobble_Game_Mid
                 {
                     bubble = new Bubble(_bubble)
                     {
-                        Position = new Vector2(185+ 30+ i * Singleton.BOBBLESIZE + ((j % 2) == 0 ? 0 : 30), 100+ j * Singleton.BOBBLESIZE),
-                        LinearVelocity = 0,
+                        Position = new Vector2(185 + 30 + i * Singleton.BOBBLESIZE + ((j % 2) == 0 ? 0 : 30), 100 + j * Singleton.BOBBLESIZE),
+                        IsAcive = false,
                         _color = GetRandomColor(),
                     };
                     _gameObjects.Add(bubble);

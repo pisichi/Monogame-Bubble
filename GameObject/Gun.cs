@@ -78,7 +78,7 @@ namespace Bobble_Game_Mid.gameObject
             {   
 
                 bubble.LinearVelocity = this.LinearVelocity * 7;
-                //bubble.Isshooting = true;
+                bubble.Isshooting = true;
                 shooting = true;
                 gameObjects.Add(bubble);
 

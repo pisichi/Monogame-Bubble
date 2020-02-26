@@ -16,11 +16,11 @@ namespace Bobble_Game_Mid.gameObject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        bool IsAcive = true;
+        public bool IsAcive = true;
         public bool Isshooting;
 
-        //bool Ishitting = false;
-        //bool Inplace = false;
+        bool Ishitting = false;
+        bool Inplace = false;
         bool TouchTop;
 
         Texture2D _texture2;
@@ -30,15 +30,16 @@ namespace Bobble_Game_Mid.gameObject
         Random rnd = new Random();
 
 
-        //public Rectangle Rectangle
-        //{
-        //    get
-        //    {
+        public Rectangle Rectangle2
+        {
+            get
+            {
 
-        //        //return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width  , _texture.Height );
-        //        return new Rectangle((int)Position.X , (int)Position.Y , _texture.Width , _texture.Height) ;
-        //    }
-        //}
+                //return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width  , _texture.Height );
+                //return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X - 45 * 2, (int)Position.Y - 45 * 2, _texture.Width + 30 * 4, _texture.Height + 30 * 4);
+            }
+        }
 
 
         public Bubble(Texture2D texture) : base(texture)
@@ -59,19 +60,34 @@ namespace Bobble_Game_Mid.gameObject
 
             CheckColision(gameObjects);
 
-            //if(!Inplace && Ishitting && Position.X % Singleton.BOBBLESIZE != 0)
+            //if (!Inplace && Ishitting && Position.X % Singleton.BOBBLESIZE != 0)
             //{
-            //    this.Position.X += Position.X % Singleton.BOBBLESIZE;
-            //    Ishitting = false;
             //    Inplace = true;
+            //    this.Position.X += Position.X % Singleton.BOBBLESIZE;
+
             //}
 
-            if(!IsAcive && !TouchTop)
+            //if(!IsAcive && !TouchTop)
+            //{
+            //    IsRemove = true;
+            //}
+
+            if (Ishitting)
             {
-                IsRemove = true;
+                CheckPop();
+                Ishitting = false;
+
             }
 
-            
+
+
+
+
+        }
+
+        private void CheckPop()
+        {
+            Console.WriteLine("X: " + Position.X+ "Y: "+ Position.Y);
 
         }
 
@@ -80,7 +96,7 @@ namespace Bobble_Game_Mid.gameObject
         {
 
 
-
+            
             foreach (var sprite in gameObjects)
             {
                 if ((this.Direction.X / this.LinearVelocity > 0 && this.IsTouchingLeft(sprite)) ||
@@ -93,10 +109,13 @@ namespace Bobble_Game_Mid.gameObject
                     //}
                     //else
                     //this.Direction.X *= -1;
-                    //Ishitting = true;
-                    //LinearVelocity = 0;
-                    IsAcive = false;
 
+                    //LinearVelocity = 0;
+
+                    if (IsAcive)
+                        Ishitting = true;
+
+                    IsAcive = false;
                 }
 
                 if ((this.Direction.Y / this.LinearVelocity > 0 && this.IsTouchingTop(sprite)) ||
@@ -108,10 +127,13 @@ namespace Bobble_Game_Mid.gameObject
                     //}
                     //else
                     //this.Direction.Y *= -1;
-                    //Ishitting = true;
+                    if (IsAcive)
+                        Ishitting = true;
                     //LinearVelocity = 0;
                     IsAcive = false;
                     TouchTop = true;
+
+
 
                 }
 
@@ -139,7 +161,11 @@ namespace Bobble_Game_Mid.gameObject
         public override void Draw(SpriteBatch spriteBatch) 
         {
 
-            spriteBatch.Draw(_texture, destinationRectangle: Rectangle);
+            if (Isshooting)
+            {
+                spriteBatch.Draw(_texture, destinationRectangle: Rectangle2, Color.Red * 0.2f);
+            }
+
             spriteBatch.Draw(_texture, Position, null, _color, _rotation, Origin, 1f, SpriteEffects.None, 0);
             
             base.Draw(spriteBatch);
@@ -166,10 +192,12 @@ namespace Bobble_Game_Mid.gameObject
 
         protected bool IsTouchingTop(GameObject sprite)
         {
+           
             return this.Rectangle.Bottom + this.Direction.Y / this.LinearVelocity > sprite.Rectangle.Top &&
               this.Rectangle.Top < sprite.Rectangle.Top &&
               this.Rectangle.Right > sprite.Rectangle.Left &&
               this.Rectangle.Left < sprite.Rectangle.Right;
+              
         }
 
         protected bool IsTouchingBottom(GameObject sprite)
