@@ -4,12 +4,14 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/ball.png</File>
-    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/bg.png</File>
-    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/border.png</File>
-    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/gun.png</File>
+    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/ball.png</File>
+    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/bg.png</File>
+    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/border.png</File>
+    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/gun.png</File>
+    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/head3.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

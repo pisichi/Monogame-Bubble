@@ -11,12 +11,9 @@ namespace Bobble_Game_Mid.gameObject
 {
     class Gun : GameObject
     {
-
-
         public Bubble Bubble;
         Random rnd = new Random();
         bool shooting = true;
-        
         
         int _currentColor;
         Color _gunColor;
@@ -25,7 +22,7 @@ namespace Bobble_Game_Mid.gameObject
 
         public Gun(Texture2D texture) : base(texture)
         {
-            _rotation = 4.7f;
+            _rotation = -1.6f;
             ISgun = true;
 
         }
@@ -42,7 +39,7 @@ namespace Bobble_Game_Mid.gameObject
 
 
 
-            //Console.WriteLine(_rotation);
+            Console.WriteLine(_rotation);
             AddBubble(gameObjects);
 
 
@@ -52,12 +49,12 @@ namespace Bobble_Game_Mid.gameObject
         {
             if (_currentkey.IsKeyDown(Keys.A))
             {
-                if (_rotation > 3.4)
+                if (_rotation > -2.6)
                     _rotation -= MathHelper.ToRadians(RotationVelocity);
             }
             else if (_currentkey.IsKeyDown(Keys.D))
             {
-                if (_rotation < 6.0)
+                if (_rotation < -0.6)
                     _rotation += MathHelper.ToRadians(RotationVelocity);
             }
         }
@@ -128,10 +125,10 @@ namespace Bobble_Game_Mid.gameObject
 
         public override void Draw(SpriteBatch spriteBatch)
         {   
-            if(_rotation >= 4.7f)
-            spriteBatch.Draw(_texture, Position, null, _gunColor, _rotation, Origin, 1, SpriteEffects.None, 0);
+            if(_rotation >= -1.6f)
+            spriteBatch.Draw(_texture, Position , null, Color.White, _rotation, Origin + new Vector2(-30,30), 1f, SpriteEffects.None, 0);
             else
-            spriteBatch.Draw(_texture, Position, null, _gunColor, _rotation, Origin, 1, SpriteEffects.FlipVertically , 0);
+            spriteBatch.Draw(_texture, Position, null, Color.White, _rotation, Origin + new Vector2(-30, -30), 1f, SpriteEffects.FlipVertically , 0);
             base.Draw(spriteBatch);
         }
     }

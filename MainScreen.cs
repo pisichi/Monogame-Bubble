@@ -69,7 +69,7 @@ namespace Bobble_Game_Mid
             _bubble = this.Content.Load<Texture2D>("ball");
             _bg = this.Content.Load<Texture2D>("bg");
             _border = this.Content.Load<Texture2D>("border");
-            _gun = this.Content.Load<Texture2D>("gun");
+            _gun = this.Content.Load<Texture2D>("head3");
 
 
             _gameObjects = new List<GameObject>()

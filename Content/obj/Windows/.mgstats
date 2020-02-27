@@ -3,3 +3,4 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/User/Desktop/Bobble Game Mid/Content/bg.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/bg.xnb","TextureProcessor","Texture2DContent",4127,1400085,0.1874119
 "C:/Users/User/Desktop/Bobble Game Mid/Content/border.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/border.xnb","TextureProcessor","Texture2DContent",5376,1400085,0.2117925
 "C:/Users/User/Desktop/Bobble Game Mid/Content/gun.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/gun.xnb","TextureProcessor","Texture2DContent",3394,40085,0.2047757
+"C:/Users/User/Desktop/Bobble Game Mid/Content/head3.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/head3.xnb","TextureProcessor","Texture2DContent",1897,19741,0.1444473

@@ -110,23 +110,18 @@ namespace Bobble_Game_Mid.gameObject
                 if (sprite == this)
                     continue;
 
-
                 Vector2 distance = this.Position - sprite.Position;
                 if (distance.Length() < this.radius + sprite.radius && this.IsAcive && !sprite.ISgun)
                 {
-                    Console.WriteLine("I'm "+ this._color+ " and I'm hitting " + sprite._color + " And i'm at + " + this.Position);
+                    Console.WriteLine("I'm "+ this._color+ " I'm hitting " + sprite._color + " And i'm at + " + this.Position);
                     IsAcive = false;
-                    //LinearVelocity *= -1f;
 
                 }
-
-
                 //else
                 //{
                 //    playerCollided = false;
                 //    spriteName = "null";
                 //}
-
                 #region BoxDetection
                 //if ((this.Direction.X / this.LinearVelocity > 0 && this.IsTouchingLeft(sprite)) ||
                 //    (this.Direction.X / this.LinearVelocity < 0 & this.IsTouchingRight(sprite)))
@@ -149,7 +144,6 @@ namespace Bobble_Game_Mid.gameObject
 
                 //}
                 #endregion
-
             }
 
             if (Position.X - Origin.X <= 200 && Direction.X / LinearVelocity < 200)
