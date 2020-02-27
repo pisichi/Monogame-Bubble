@@ -17,14 +17,14 @@ namespace Bobble_Game_Mid.gameObject
         
         int _currentColor;
         Color _gunColor;
-        Texture2D _eye;
+        //Texture2D _eye;
 
 
         public Gun(Texture2D texture) : base(texture)
         {
             _rotation = -1.6f;
-            ISgun = true;
-
+            _ObjType = ObjType.gun;
+            //_eye = Bubble._texture;
         }
 
 
@@ -34,12 +34,9 @@ namespace Bobble_Game_Mid.gameObject
             _currentkey = Keyboard.GetState();
 
             Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
-
+        
             CheckInput();
 
-
-
-            Console.WriteLine(_rotation);
             AddBubble(gameObjects);
 
 
@@ -67,11 +64,8 @@ namespace Bobble_Game_Mid.gameObject
             bubble.Position = this.Position;
             bubble.LinearVelocity = 0;
             bubble._color = this.GetRandomColor();
-            //bubble.Isshooting = false;
 
             
-
-
 
             if (_currentkey.IsKeyDown(Keys.Space) && _previouskey.IsKeyUp(Keys.Space))
             {   
@@ -94,8 +88,6 @@ namespace Bobble_Game_Mid.gameObject
                 _currentColor = rnd.Next(0, 6);
                 shooting = false;
              }
-
-              //_currentColor = rnd.Next(0, 6);
 
             switch (_currentColor)
             {
@@ -124,8 +116,10 @@ namespace Bobble_Game_Mid.gameObject
 
 
         public override void Draw(SpriteBatch spriteBatch)
-        {   
-            if(_rotation >= -1.6f)
+        {
+
+            //spriteBatch.Draw(_eye, Position, null, _color, _rotation, Origin, 1f, SpriteEffects.None, 0);
+            if (_rotation >= -1.6f)
             spriteBatch.Draw(_texture, Position , null, Color.White, _rotation, Origin + new Vector2(-30,30), 1f, SpriteEffects.None, 0);
             else
             spriteBatch.Draw(_texture, Position, null, Color.White, _rotation, Origin + new Vector2(-30, -30), 1f, SpriteEffects.FlipVertically , 0);

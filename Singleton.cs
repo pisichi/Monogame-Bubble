@@ -21,13 +21,9 @@ namespace Bobble_Game_Mid
 
         public int Score;
         public int Level;
-        public int LineDeleted;
 
-        public KeyboardState PreviousKey, CurrentKey;
 
         public int[,] GameBoard;
-
-        public Random Random = new Random();
 
         public enum GameState
         {

@@ -11,46 +11,47 @@ namespace Bobble_Game_Mid.gameObject
 {
     class GameObject : ICloneable
     {
-        protected Texture2D _texture;
+        public Texture2D _texture;
 
         public float _rotation;
-        public Vector2 Scale;
-        public Vector2 Velocity;
         public float RotationVelocity = 3f;
         public float LinearVelocity = 5f;
+
+        public Vector2 Scale;
+        public Vector2 Velocity;
+        public Vector2 Direction;
+        public Vector2 Location;
+        public Vector2 Position;
+        public Vector2 Origin;
+
+
 
 
         public KeyboardState _currentkey;
         public KeyboardState _previouskey;
 
-        public Vector2 Position;
-        public Vector2 Origin;
-        public int radius;
 
-        public Vector2 Direction;
+        public int radius;
+        public int count = 1;
 
         public bool IsRemove = false;
 
         public Color _color;
 
+        public Random rnd = new Random();
 
-        public bool ISgun;
-
-        public Rectangle Rectangle
+        public enum ObjType
         {
-            get
-            {
-
-                return new Rectangle((int)Position.X -30 , (int)Position.Y - 30, _texture.Width, _texture.Height);
-            }
+            bubble,
+            gun
         }
+        public ObjType _ObjType;
+
 
         public GameObject(Texture2D texture)
         {
             this._texture = texture;
             this.Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
-            radius = 10000;
-
 
         }
 
@@ -58,6 +59,7 @@ namespace Bobble_Game_Mid.gameObject
 
         public virtual void Update(GameTime gameTime, List<GameObject> gameObjects)
         {
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

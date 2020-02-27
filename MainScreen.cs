@@ -15,8 +15,8 @@ namespace Bobble_Game_Mid
         SpriteBatch spriteBatch;
 
         private List<GameObject> _gameObjects;
-        //Bubble [,] bubble = new Bubble[9,8];
-        Bubble bubble;
+        Bubble [,] bubble = new Bubble[9,8];
+        //Bubble bubble;
 
         Random rnd = new Random();
 
@@ -25,7 +25,6 @@ namespace Bobble_Game_Mid
         Texture2D _border;
         Texture2D _gun;
 
-        int draw;
 
         int currentPosX = Singleton.BOBBLESIZE * 2;
         int currentPosY = Singleton.BOBBLESIZE;
@@ -50,10 +49,6 @@ namespace Bobble_Game_Mid
             graphics.PreferredBackBufferHeight = Singleton.SCREENHEIGHT;
             graphics.ApplyChanges();
             Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
-
-
-
-            decendSpeed = 150;
 
 
        
@@ -86,13 +81,15 @@ namespace Bobble_Game_Mid
             {
                 for (int j = 0; j < 4; j += 1)
                 {
-                    bubble = new Bubble(_bubble)
+                    bubble[i, j] = new Bubble(_bubble)
                     {
                         Position = new Vector2(185 + 30 + i * Singleton.BOBBLESIZE + ((j % 2) == 0 ? 0 : 30), 100 + j * Singleton.BOBBLESIZE),
-                        IsAcive = false,
+                        IsActive = false,
                         _color = GetRandomColor(),
+                        Location = new Vector2(i, j),
+                        _bubbleState = Bubble.BubbleState.inplace
                     };
-                    _gameObjects.Add(bubble);
+                    _gameObjects.Add(bubble[i,j]);
                 }
             }
 
@@ -136,8 +133,6 @@ namespace Bobble_Game_Mid
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
-
 
             spriteBatch.Begin();
 
