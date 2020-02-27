@@ -45,6 +45,9 @@ namespace Bobble_Game_Mid.gameObject
         public Bubble(Texture2D texture) : base(texture)
         {
             Scale = new Vector2(Singleton.BOBBLESIZE /texture.Width ,Singleton.BOBBLESIZE /texture.Width);
+            radius = texture.Width / 2;
+            ISgun = false;
+
 
 
         }
@@ -54,9 +57,14 @@ namespace Bobble_Game_Mid.gameObject
         {
 
             if (!IsAcive)
+            {
                 LinearVelocity = 0;
+                RotationVelocity = 0;
+            }
+
 
             Position += Direction * LinearVelocity;
+            _rotation += RotationVelocity;
 
             CheckColision(gameObjects);
 
@@ -99,43 +107,48 @@ namespace Bobble_Game_Mid.gameObject
             
             foreach (var sprite in gameObjects)
             {
-                if ((this.Direction.X / this.LinearVelocity > 0 && this.IsTouchingLeft(sprite)) ||
-                    (this.Direction.X / this.LinearVelocity < 0 & this.IsTouchingRight(sprite)))
+                if (sprite == this)
+                    continue;
+
+
+                Vector2 distance = this.Position - sprite.Position;
+                if (distance.Length() < this.radius + sprite.radius && this.IsAcive && !sprite.ISgun)
                 {
-
-                    //if (this.IsAcive)
-                    //{
-                    //    this.Direction.X *= -1;
-                    //}
-                    //else
-                    //this.Direction.X *= -1;
-
-                    //LinearVelocity = 0;
-
-                    if (IsAcive)
-                        Ishitting = true;
-
+                    Console.WriteLine("I'm "+ this._color+ " and I'm hitting " + sprite._color + " And i'm at + " + this.Position);
                     IsAcive = false;
+                    //LinearVelocity *= -1f;
+
                 }
 
-                if ((this.Direction.Y / this.LinearVelocity > 0 && this.IsTouchingTop(sprite)) ||
-                    (this.Direction.Y / this.LinearVelocity < 0 & this.IsTouchingBottom(sprite)))
-                {
-                    //if (this.IsAcive)
-                    //{
-                    //    this.Direction.Y *= -1;
-                    //}
-                    //else
-                    //this.Direction.Y *= -1;
-                    if (IsAcive)
-                        Ishitting = true;
-                    //LinearVelocity = 0;
-                    IsAcive = false;
-                    TouchTop = true;
 
+                //else
+                //{
+                //    playerCollided = false;
+                //    spriteName = "null";
+                //}
 
+                #region BoxDetection
+                //if ((this.Direction.X / this.LinearVelocity > 0 && this.IsTouchingLeft(sprite)) ||
+                //    (this.Direction.X / this.LinearVelocity < 0 & this.IsTouchingRight(sprite)))
+                //{
 
-                }
+                //    if (IsAcive)
+                //        Ishitting = true;
+
+                //    IsAcive = false;
+                //}
+
+                //if ((this.Direction.Y / this.LinearVelocity > 0 && this.IsTouchingTop(sprite)) ||
+                //    (this.Direction.Y / this.LinearVelocity < 0 & this.IsTouchingBottom(sprite)))
+                //{
+                //    if (IsAcive)
+                //        Ishitting = true;
+                //    //LinearVelocity = 0;
+                //    IsAcive = false;
+                //    TouchTop = true;
+
+                //}
+                #endregion
 
             }
 
@@ -146,8 +159,6 @@ namespace Bobble_Game_Mid.gameObject
 
             else if (Position.Y - Origin.Y <= 60 && Direction.Y / LinearVelocity < 60)
             {
-                //LinearVelocity = 0;
-                //IsRemove = true;
                 IsAcive = false;
             }
 
@@ -163,7 +174,7 @@ namespace Bobble_Game_Mid.gameObject
 
             if (Isshooting)
             {
-                spriteBatch.Draw(_texture, destinationRectangle: Rectangle2, Color.Red * 0.2f);
+                //spriteBatch.Draw(_texture, destinationRectangle: Rectangle2, Color.Red * 0.2f);
             }
 
             spriteBatch.Draw(_texture, Position, null, _color, _rotation, Origin, 1f, SpriteEffects.None, 0);

@@ -17,7 +17,7 @@ namespace Bobble_Game_Mid.gameObject
         public Vector2 Scale;
         public Vector2 Velocity;
         public float RotationVelocity = 3f;
-        public float LinearVelocity = 4f;
+        public float LinearVelocity = 5f;
 
 
         public KeyboardState _currentkey;
@@ -25,12 +25,16 @@ namespace Bobble_Game_Mid.gameObject
 
         public Vector2 Position;
         public Vector2 Origin;
+        public int radius;
 
         public Vector2 Direction;
 
         public bool IsRemove = false;
 
         public Color _color;
+
+
+        public bool ISgun;
 
         public Rectangle Rectangle
         {
@@ -43,8 +47,10 @@ namespace Bobble_Game_Mid.gameObject
 
         public GameObject(Texture2D texture)
         {
-            _texture = texture;
-            Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
+            this._texture = texture;
+            this.Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
+            radius = 10000;
+
 
         }
 

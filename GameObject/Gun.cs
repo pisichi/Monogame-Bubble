@@ -16,6 +16,8 @@ namespace Bobble_Game_Mid.gameObject
         public Bubble Bubble;
         Random rnd = new Random();
         bool shooting = true;
+        
+        
         int _currentColor;
         Color _gunColor;
         Texture2D _eye;
@@ -24,7 +26,7 @@ namespace Bobble_Game_Mid.gameObject
         public Gun(Texture2D texture) : base(texture)
         {
             _rotation = 4.7f;
-
+            ISgun = true;
 
         }
 
@@ -77,7 +79,7 @@ namespace Bobble_Game_Mid.gameObject
             if (_currentkey.IsKeyDown(Keys.Space) && _previouskey.IsKeyUp(Keys.Space))
             {   
 
-                bubble.LinearVelocity = this.LinearVelocity * 7;
+                bubble.LinearVelocity = this.LinearVelocity *2;
                 bubble.Isshooting = true;
                 shooting = true;
                 gameObjects.Add(bubble);
