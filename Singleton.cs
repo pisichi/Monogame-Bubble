@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Bobble_Game_Mid
 {
-    class Singleton
+    public class Singleton
     {
         public const int BOBBLESIZE = 60;
 
@@ -15,8 +15,9 @@ namespace Bobble_Game_Mid
         public const int BoardWidth = 9 * BOBBLESIZE;
         public const int BoardHeight = 12 * BOBBLESIZE;
 
-        public const int SCREENWIDTH = BoardWidth + 400;
+        public const int SCREENWIDTH = BoardWidth + 800;
         public const int SCREENHEIGHT = BoardHeight + 200;
+        //public static int ScreenDown = 0;
 
 
         public int Score;

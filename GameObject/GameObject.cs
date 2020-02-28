@@ -13,19 +13,15 @@ namespace Bobble_Game_Mid.gameObject
     {
         public Texture2D _texture;
 
-        public float _rotation;
+        public float Rotation;
         public float RotationVelocity = 3f;
-        public float LinearVelocity = 5f;
+        public float LinearVelocity = 1f;
 
         public Vector2 Scale;
-        public Vector2 Velocity;
         public Vector2 Direction;
-        public Vector2 Location;
+        
         public Vector2 Position;
         public Vector2 Origin;
-
-
-
 
         public KeyboardState _currentkey;
         public KeyboardState _previouskey;

@@ -22,7 +22,7 @@ namespace Bobble_Game_Mid.gameObject
 
         public Gun(Texture2D texture) : base(texture)
         {
-            _rotation = -1.6f;
+            Rotation = -1.6f;
             _ObjType = ObjType.gun;
             //_eye = Bubble._texture;
         }
@@ -33,11 +33,13 @@ namespace Bobble_Game_Mid.gameObject
             _previouskey = _currentkey;
             _currentkey = Keyboard.GetState();
 
-            Direction = new Vector2((float)Math.Cos(_rotation), (float)Math.Sin(_rotation));
+            Direction = new Vector2((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
         
             CheckInput();
 
             AddBubble(gameObjects);
+
+            base.Update(gameTime, gameObjects, bubble);
 
 
         }
@@ -46,13 +48,13 @@ namespace Bobble_Game_Mid.gameObject
         {
             if (_currentkey.IsKeyDown(Keys.A))
             {
-                if (_rotation > -2.6)
-                    _rotation -= MathHelper.ToRadians(RotationVelocity);
+                if (Rotation > -2.6)
+                    Rotation -= MathHelper.ToRadians(RotationVelocity);
             }
             else if (_currentkey.IsKeyDown(Keys.D))
             {
-                if (_rotation < -0.6)
-                    _rotation += MathHelper.ToRadians(RotationVelocity);
+                if (Rotation < -0.6)
+                    Rotation += MathHelper.ToRadians(RotationVelocity);
             }
         }
 
@@ -65,24 +67,17 @@ namespace Bobble_Game_Mid.gameObject
             bubble.LinearVelocity = 0;
             bubble._color = this.GetRandomColor();
             
-
-            
-
             if (_currentkey.IsKeyDown(Keys.Space) && _previouskey.IsKeyUp(Keys.Space))
             {   
-
-                bubble.LinearVelocity = this.LinearVelocity *2;
+                bubble.LinearVelocity = this.LinearVelocity *10;
                 shooting = true;
                 gameObjects.Add(bubble);
-
-
             }
         }
 
-
         public Color GetRandomColor()
         {
-            Color _color = Color.Black;
+            Color _color = Color.White;
 
             if (shooting) {
                 _currentColor = rnd.Next(0, 6);
@@ -92,31 +87,26 @@ namespace Bobble_Game_Mid.gameObject
             switch (_currentColor)
             {
                 case 0:
-                    _color = Color.White;
-                    _color.A = 0;
+                    _color = Color.DarkBlue;
                     break;
                 case 1:
                     _color = Color.Blue;
-                    _color.A = 150;
                     break;
                 case 2:
                     _color = Color.Yellow;
-                    _color.A = 150;
                     break;
                 case 3:
                     _color = Color.Red;
-                    _color.A = 150;
                     break;
                 case 4:
                     _color = Color.Green;
-                    _color.A = 150;
                     break;
                 case 5:
                     _color = Color.Purple;
-                    _color.A = 150;
                     break;
             }
             _gunColor = _color;
+            _color.A = 180;
             return _color;
         }
 
@@ -125,10 +115,10 @@ namespace Bobble_Game_Mid.gameObject
         {
 
             //spriteBatch.Draw(_eye, Position, null, _color, _rotation, Origin, 1f, SpriteEffects.None, 0);
-            if (_rotation >= -1.6f)
-            spriteBatch.Draw(_texture, Position , null, Color.White, _rotation, Origin + new Vector2(-30,30), 1.2f, SpriteEffects.None, 0);
+            if (Rotation >= -1.6f)
+            spriteBatch.Draw(_texture, Position , null, Color.White, Rotation, Origin + new Vector2(-30,30), 1.2f, SpriteEffects.None, 0);
             else
-            spriteBatch.Draw(_texture, Position, null, Color.White, _rotation, Origin + new Vector2(-30, -30), 1.2f, SpriteEffects.FlipVertically , 0);
+            spriteBatch.Draw(_texture, Position, null, Color.White, Rotation, Origin + new Vector2(-30, -30), 1.2f, SpriteEffects.FlipVertically , 0);
             base.Draw(spriteBatch);
         }
     }
