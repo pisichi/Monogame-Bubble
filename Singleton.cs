@@ -17,7 +17,8 @@ namespace Bobble_Game_Mid
 
         public const int SCREENWIDTH = BoardWidth + 800;
         public const int SCREENHEIGHT = BoardHeight + 200;
-        //public static int ScreenDown = 0;
+
+        public static int _down = 0;
 
 
         public int Score;

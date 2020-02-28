@@ -43,7 +43,7 @@ namespace Bobble_Game_Mid.gameObject
         {
             Scale = new Vector2(Singleton.BOBBLESIZE / texture.Width, Singleton.BOBBLESIZE / texture.Width);
             RotationVelocity = 0.1f;
-            radius = (texture.Width + 7) / 2;
+            radius = (texture.Width + 5) / 2;
             _ObjType = ObjType.bubble;
 
         }
@@ -84,8 +84,6 @@ namespace Bobble_Game_Mid.gameObject
                 Vector2 distance = this.Position - sprite.Position;
                 if (distance.Length() < this.radius + sprite.radius && this.IsActive && sprite._ObjType == ObjType.bubble)
                 {
-
-
                     Console.WriteLine("I'm " + this._color + " I'm hitting " + sprite._color + " And i'm at + " + this.Position + " " + this.Location);
                     IsActive = false;
                     checkhit = true;
@@ -117,11 +115,32 @@ namespace Bobble_Game_Mid.gameObject
 
         private void CheckLocation(Bubble[,] bubble)
         {
-            bubble[8, 8] = this;
+            int i = (int)(this.Position.Y - 100 - Singleton._down + radius) / Singleton.BOBBLESIZE;
+            int j = (int)(this.Position.X - 400 - 15 + radius - ((i % 2) == 0 ? 0 : 30)) / (Singleton.BOBBLESIZE + 5);
+
+            this.Position = new Vector2(400 + 15 + j * (Singleton.BOBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), Singleton._down + 100 + i * (Singleton.BOBBLESIZE));
+            bubble[i, j] = this;
+            Location = new Vector2(i, j);
+
+            Console.WriteLine(i + " " + j);
         }
 
         private void CheckColor(GameObject sprite, Bubble[,] bubble)
         {
+
+
+
+            for (int i = (int)Location.X -1 ; i < Location.X + 1; i += 1)
+            {
+                for (int j = (int)Location.Y - 1; j < Location.Y + 1 + (i % 2); j += 1)
+                {
+                    if (bubble[i, j] == null || bubble[i, j] == this)
+                        continue;
+
+                    Console.Write("color at " + i + " " + j + " is:" + bubble[i, j]._color);
+                }
+                Console.WriteLine("");
+            }
 
             for (int i = 0; i < 12; i += 1)
             {
@@ -135,17 +154,7 @@ namespace Bobble_Game_Mid.gameObject
                 Console.WriteLine("");
             }
 
-            //if (this._color == sprite._color && checkhit)
-            //{
-            //    sprite.count++;
-            //    this.count = sprite.count;
 
-            //    Console.WriteLine("yay we are the same color! " + this.Location + " and " + sprite.Location + "total count: " + this.count);
-            //    checkhit = false;
-            //    if (count >= 3)
-            //        IsRemove = true;
-
-            //    }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

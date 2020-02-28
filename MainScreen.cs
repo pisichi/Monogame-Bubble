@@ -29,7 +29,7 @@ namespace Bobble_Game_Mid
         Texture2D _frame;
         Rectangle _borderRect;
 
-        private int _down = 0;
+
 
 
         public MainScreen()
@@ -116,7 +116,7 @@ namespace Bobble_Game_Mid
             tick += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
             if (tick >= 30)
             {
-                _down += 60;
+                Singleton._down += 60;
 
                 for (int i = 0; i < 18; i += 1)
                 {
@@ -127,7 +127,7 @@ namespace Bobble_Game_Mid
                             bubble[i, j].Position.Y += 60;
                         }
                     }
-                   
+
                 }
                 tick = 0;
             }
@@ -161,7 +161,7 @@ namespace Bobble_Game_Mid
             spriteBatch.Begin(); 
 
             spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
-            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(370, Singleton.BOBBLESIZE + _down, Singleton.BoardWidth + 70, Singleton.BoardHeight + 100 + _down));
+            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(370, Singleton.BOBBLESIZE + Singleton._down, Singleton.BoardWidth + 70, Singleton.BoardHeight + 100 + Singleton._down));
 
 
             foreach (var gameobject in _gameObjects)
