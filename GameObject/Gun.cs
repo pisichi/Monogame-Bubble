@@ -28,7 +28,7 @@ namespace Bobble_Game_Mid.gameObject
         }
 
 
-        public override void Update(GameTime gameTime,List<GameObject> gameObjects)
+        public override void Update(GameTime gameTime,List<GameObject> gameObjects, Bubble[,] bubble)
         {
             _previouskey = _currentkey;
             _currentkey = Keyboard.GetState();
@@ -64,6 +64,7 @@ namespace Bobble_Game_Mid.gameObject
             bubble.Position = this.Position;
             bubble.LinearVelocity = 0;
             bubble._color = this.GetRandomColor();
+            
 
             
 
@@ -71,7 +72,6 @@ namespace Bobble_Game_Mid.gameObject
             {   
 
                 bubble.LinearVelocity = this.LinearVelocity *2;
-                bubble.Isshooting = true;
                 shooting = true;
                 gameObjects.Add(bubble);
 
@@ -93,21 +93,27 @@ namespace Bobble_Game_Mid.gameObject
             {
                 case 0:
                     _color = Color.White;
+                    _color.A = 0;
                     break;
                 case 1:
                     _color = Color.Blue;
+                    _color.A = 150;
                     break;
                 case 2:
                     _color = Color.Yellow;
+                    _color.A = 150;
                     break;
                 case 3:
                     _color = Color.Red;
+                    _color.A = 150;
                     break;
                 case 4:
                     _color = Color.Green;
+                    _color.A = 150;
                     break;
                 case 5:
                     _color = Color.Purple;
+                    _color.A = 150;
                     break;
             }
             _gunColor = _color;
@@ -120,9 +126,9 @@ namespace Bobble_Game_Mid.gameObject
 
             //spriteBatch.Draw(_eye, Position, null, _color, _rotation, Origin, 1f, SpriteEffects.None, 0);
             if (_rotation >= -1.6f)
-            spriteBatch.Draw(_texture, Position , null, Color.White, _rotation, Origin + new Vector2(-30,30), 1f, SpriteEffects.None, 0);
+            spriteBatch.Draw(_texture, Position , null, Color.White, _rotation, Origin + new Vector2(-30,30), 1.2f, SpriteEffects.None, 0);
             else
-            spriteBatch.Draw(_texture, Position, null, Color.White, _rotation, Origin + new Vector2(-30, -30), 1f, SpriteEffects.FlipVertically , 0);
+            spriteBatch.Draw(_texture, Position, null, Color.White, _rotation, Origin + new Vector2(-30, -30), 1.2f, SpriteEffects.FlipVertically , 0);
             base.Draw(spriteBatch);
         }
     }

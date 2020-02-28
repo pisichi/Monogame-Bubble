@@ -23,6 +23,7 @@ namespace Bobble_Game_Mid
         public int Level;
 
 
+
         public int[,] GameBoard;
 
         public enum GameState
@@ -41,6 +42,8 @@ namespace Bobble_Game_Mid
 
         private Singleton()
         {
+
+
         }
 
         public static Singleton Instance

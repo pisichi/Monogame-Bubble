@@ -79,3 +79,7 @@ C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\bg.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\ball.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\bg.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\head3.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\head3.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\ball2.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\frame.xnb
+C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\bg2.xnb

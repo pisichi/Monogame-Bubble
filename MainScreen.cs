@@ -4,19 +4,20 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using Bobble_Game_Mid.gameObject;
-
+using System.Threading;
 
 namespace Bobble_Game_Mid
 {
 
-    public class MainScreen : Game
+     class MainScreen : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         private List<GameObject> _gameObjects;
-        Bubble [,] bubble = new Bubble[9,8];
-        //Bubble bubble;
+        private Bubble[,] bubble = new Bubble[18, 9];
+
+        float tick = 10f;
 
         Random rnd = new Random();
 
@@ -24,16 +25,8 @@ namespace Bobble_Game_Mid
         Texture2D _bg;
         Texture2D _border;
         Texture2D _gun;
-
-
-        int currentPosX = Singleton.BOBBLESIZE * 2;
-        int currentPosY = Singleton.BOBBLESIZE;
-        int border = Singleton.BOBBLESIZE * 2;
-
-
-        float tick, moveSpeed = 10f;
-
-        float decendSpeed;
+        Texture2D _bubble2;
+        Texture2D _frame;
 
 
         public MainScreen()
@@ -65,6 +58,8 @@ namespace Bobble_Game_Mid
             _bg = this.Content.Load<Texture2D>("bg");
             _border = this.Content.Load<Texture2D>("border");
             _gun = this.Content.Load<Texture2D>("head3");
+            _bubble2 = this.Content.Load<Texture2D>("ball2");
+            _frame = this.Content.Load<Texture2D>("frame");
 
 
             _gameObjects = new List<GameObject>()
@@ -77,21 +72,25 @@ namespace Bobble_Game_Mid
             };
 
 
-            for (int i = 0; i < 9; i += 1)
+            for (int i = 0; i < 5; i += 1)
             {
-                for (int j = 0; j < 4; j += 1)
+                for (int j = 0; j < 9 - (i % 2); j += 1)
                 {
+
                     bubble[i, j] = new Bubble(_bubble)
                     {
-                        Position = new Vector2(185 + 30 + i * Singleton.BOBBLESIZE + ((j % 2) == 0 ? 0 : 30), 100 + j * Singleton.BOBBLESIZE),
+                        Position = new Vector2(200 + 15 + j * (Singleton.BOBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), 100 + i * (Singleton.BOBBLESIZE)),
                         IsActive = false,
                         _color = GetRandomColor(),
                         Location = new Vector2(i, j),
-                        _bubbleState = Bubble.BubbleState.inplace
-                    };
-                    _gameObjects.Add(bubble[i,j]);
+                        _bubbleState = Bubble.BubbleState.inplace,
+                        Isshooting = false
+                };
+                    _gameObjects.Add(bubble[i, j]);
                 }
+
             }
+
 
         }
 
@@ -104,13 +103,33 @@ namespace Bobble_Game_Mid
         protected override void Update(GameTime gameTime)
         {
 
-
+           
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
 
+
+
+            tick += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
+            if (tick >= 10)
+            {
+
+
+                for (int i = 0; i < 18; i += 1)
+                {
+                    for (int j = 0; j < 9 - (i % 2); j += 1)
+                    {
+                        if (bubble[i, j] != null)
+                        bubble[i, j].Position.Y += 60;
+                    }
+
+                }
+                tick = 0;
+
+            }
+
             foreach (var gameobject in _gameObjects.ToArray())
             {
-                gameobject.Update(gameTime, _gameObjects);
+                gameobject.Update(gameTime, _gameObjects,bubble);
             }
 
             PostUpdate();
@@ -137,7 +156,7 @@ namespace Bobble_Game_Mid
             spriteBatch.Begin();
 
             spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
-            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(200, Singleton.BOBBLESIZE, Singleton.BoardWidth , Singleton.BoardHeight+100));
+            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(170, Singleton.BOBBLESIZE, Singleton.BoardWidth + 70 , Singleton.BoardHeight+100));
 
 
             foreach (var gameobject in _gameObjects)
@@ -167,21 +186,27 @@ namespace Bobble_Game_Mid
             {
                 case 0:
                     _color = Color.White;
+                    _color.A = 0;
                     break;
                 case 1:
                     _color = Color.Blue;
+                    _color.A = 0;
                     break;
                 case 2:
                     _color = Color.Yellow;
+                    _color.A = 0;
                     break;
                 case 3:
                     _color = Color.Red;
+                    _color.A = 0;
                     break;
                 case 4:
                     _color = Color.Green;
+                    _color.A = 0;
                     break;
                 case 5:
                     _color = Color.Purple;
+                    _color.A = 0;
                     break;
             }
             return _color;

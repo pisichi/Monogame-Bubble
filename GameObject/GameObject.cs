@@ -36,6 +36,7 @@ namespace Bobble_Game_Mid.gameObject
 
         public bool IsRemove = false;
 
+
         public Color _color;
 
         public Random rnd = new Random();
@@ -57,7 +58,7 @@ namespace Bobble_Game_Mid.gameObject
 
 
 
-        public virtual void Update(GameTime gameTime, List<GameObject> gameObjects)
+        public virtual void Update(GameTime gameTime, List<GameObject> gameObjects , Bubble[,] bubble)
         {
 
         }
