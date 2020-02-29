@@ -46,9 +46,10 @@ namespace Bobble_Game_Mid
             graphics.PreferredBackBufferHeight = Singleton.SCREENHEIGHT;
             graphics.ApplyChanges();
             Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
+            this.IsMouseVisible = true;
 
 
-       
+
             base.Initialize();
 
         }
@@ -113,6 +114,8 @@ namespace Bobble_Game_Mid
 
 
 
+
+
             tick += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
             if (tick >= 30)
             {
@@ -125,6 +128,9 @@ namespace Bobble_Game_Mid
                         if (bubble[i, j] != null)
                         {
                             bubble[i, j].Position.Y += 60;
+                            if (bubble[i, j].Position.Y > Singleton.BoardHeight)
+                                Singleton.Instance.CurrentGameState = Singleton.GameState.GameEnded;
+
                         }
                     }
 
@@ -158,6 +164,8 @@ namespace Bobble_Game_Mid
         {
             GraphicsDevice.Clear(Color.Black);
 
+
+
             spriteBatch.Begin(); 
 
             spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
@@ -169,7 +177,8 @@ namespace Bobble_Game_Mid
                 gameobject.Draw(spriteBatch);
             }
 
-          
+            if(Singleton.Instance.CurrentGameState == Singleton.GameState.GameEnded)
+                spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(200, 200, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
 
 
             spriteBatch.End();

@@ -14,6 +14,9 @@ namespace Bobble_Game_Mid.gameObject
         public Bubble Bubble;
         Random rnd = new Random();
         bool shooting = true;
+
+
+        Vector2 _distance;
         
         int _currentColor;
         Color _gunColor;
@@ -32,6 +35,13 @@ namespace Bobble_Game_Mid.gameObject
         {
             _previouskey = _currentkey;
             _currentkey = Keyboard.GetState();
+            //MouseState mouse = Mouse.GetState();
+
+            //_distance.X = mouse.X - Origin.X -30;
+            //_distance.Y = mouse.Y - Origin.Y +30;
+            //Rotation = (float)Math.Atan2(_distance.Y, _distance.X);
+
+
 
             Direction = new Vector2((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
         
@@ -80,14 +90,14 @@ namespace Bobble_Game_Mid.gameObject
             Color _color = Color.White;
 
             if (shooting) {
-                _currentColor = rnd.Next(0, 6);
+                _currentColor = rnd.Next(0, 1);
                 shooting = false;
              }
 
             switch (_currentColor)
             {
                 case 0:
-                    _color = Color.DarkBlue;
+                    _color = Color.White;
                     break;
                 case 1:
                     _color = Color.Blue;
@@ -106,7 +116,6 @@ namespace Bobble_Game_Mid.gameObject
                     break;
             }
             _gunColor = _color;
-            _color.A = 180;
             return _color;
         }
 

@@ -18,6 +18,8 @@ namespace Bobble_Game_Mid.gameObject
         public bool Isshooting;
         private bool checkhit = false;
 
+        private bool IsCheck = false;
+
 
         public Vector2 Location;
 
@@ -52,8 +54,8 @@ namespace Bobble_Game_Mid.gameObject
         public override void Update(GameTime gameTime, List<GameObject> gameObjects, Bubble[,] bubble)
         {
 
-            if (_color.A < 254)
-                _color.A += 2;
+            if (_color.A < 255)
+                _color.A += 1;
 
             if (!IsActive)
             {
@@ -61,12 +63,15 @@ namespace Bobble_Game_Mid.gameObject
                 RotationVelocity = 0;
             }
             if (count >= 3)
+            {
                 IsRemove = true;
-
+                bubble[(int)Location.X, (int)Location.Y] = null;
+  
+            }
+                
 
             Position += Direction * LinearVelocity;
             Rotation += RotationVelocity;
-
             CheckColision(gameObjects, bubble);
 
             base.Update(gameTime, gameObjects, bubble);
@@ -88,8 +93,10 @@ namespace Bobble_Game_Mid.gameObject
                     IsActive = false;
                     checkhit = true;
 
+
                     CheckLocation(bubble);
                     CheckColor(sprite, bubble);
+                    IsCheck = false;
                 }
             }
 
@@ -125,22 +132,48 @@ namespace Bobble_Game_Mid.gameObject
             Console.WriteLine(i + " " + j);
         }
 
+
+
+
         private void CheckColor(GameObject sprite, Bubble[,] bubble)
         {
+            if (IsCheck)
+                return;
 
-
-
-            for (int i = (int)Location.X -1 ; i < Location.X + 1; i += 1)
+            for (int i = (int)Location.X - 1; i <= Location.X + 1; i += 1)
             {
-                for (int j = (int)Location.Y - 1; j < Location.Y + 1 + (i % 2); j += 1)
+
+                for (int j = (int)Location.Y - 1; j <= Location.Y + 1 ; j += 1)
                 {
-                    if (bubble[i, j] == null || bubble[i, j] == this)
+                    //null handeler
+                    if (i < 0 || j < 0 || bubble[i, j] == null || bubble[i, j] == this)
                         continue;
 
+                    //even row
+                    if (Location.X % 2 == 0 &&( (i == Location.X - 1 && j == Location.Y + 1) || (i == Location.X + 1 && j == Location.Y + 1)) )
+                        continue;
+
+                    //odd row
+                    if (Location.X % 2 != 0 && ((i == Location.X - 1 && j == Location.Y - 1) || (i == Location.X + 1 && j == Location.Y - 1)))
+                        continue;
+
+
                     Console.Write("color at " + i + " " + j + " is:" + bubble[i, j]._color);
+
+                    if (bubble[i, j]._color == bubble[(int)Location.X, (int)Location.Y]._color)
+                    {
+                        Console.WriteLine("yay we are the same color at " + i + " " + j);
+                        bubble[(int)Location.X, (int)Location.Y].count+=1;
+                        //bubble[i,j].count += 1;
+                        IsCheck = true;
+                        bubble[i,j].CheckColor(sprite, bubble);
+                    }
+
                 }
                 Console.WriteLine("");
             }
+
+
 
             for (int i = 0; i < 12; i += 1)
             {
@@ -157,6 +190,8 @@ namespace Bobble_Game_Mid.gameObject
 
         }
 
+
+
         public override void Draw(SpriteBatch spriteBatch)
         {
 
@@ -169,6 +204,8 @@ namespace Bobble_Game_Mid.gameObject
 
             base.Draw(spriteBatch);
         }
+
+
 
 
 
