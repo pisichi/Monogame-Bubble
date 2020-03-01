@@ -35,13 +35,6 @@ namespace Bobble_Game_Mid.gameObject
         {
             _previouskey = _currentkey;
             _currentkey = Keyboard.GetState();
-            //MouseState mouse = Mouse.GetState();
-
-            //_distance.X = mouse.X - Origin.X -30;
-            //_distance.Y = mouse.Y - Origin.Y +30;
-            //Rotation = (float)Math.Atan2(_distance.Y, _distance.X);
-
-
 
             Direction = new Vector2((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
         
@@ -90,7 +83,7 @@ namespace Bobble_Game_Mid.gameObject
             Color _color = Color.White;
 
             if (shooting) {
-                _currentColor = rnd.Next(0, 1);
+                _currentColor = rnd.Next(0, 2);
                 shooting = false;
              }
 

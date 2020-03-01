@@ -195,7 +195,7 @@ namespace Bobble_Game_Mid
         public Color GetRandomColor()
         {
             Color _color = Color.White;
-            switch (rnd.Next(0, 6))
+            switch (rnd.Next(0, 2))
             {
                 case 0:
                     _color = Color.White;
