@@ -49,7 +49,6 @@ namespace Bobble_Game_Mid.gameObject
         {
             this._texture = texture;
             this.Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
-
         }
 
 

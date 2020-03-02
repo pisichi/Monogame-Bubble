@@ -25,7 +25,6 @@ C:\Users\OS\Desktop\game programing\Bobble Game Mid\bin\Windows\x86\Debug\Conten
 C:\Users\OS\Desktop\game programing\Bobble Game Mid\bin\Windows\x86\Debug\Content\bg_2.xnb
 C:\Users\OS\Desktop\game programing\Bobble Game Mid\bin\Windows\x86\Debug\Content\border.xnb
 C:\Users\OS\Desktop\game programing\Bobble Game Mid\bin\Windows\x86\Debug\Content\ball2.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\border.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Bobble Game Mid.exe
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Bobble Game Mid.pdb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\MonoGame.Framework.dll
@@ -49,7 +48,6 @@ C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Debug\Bobble Game Mid.csproj.CoreC
 C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Debug\Bobble Game Mid.csproj.CopyComplete
 C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Debug\Bobble Game Mid.exe
 C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Debug\Bobble Game Mid.pdb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\gun.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\border.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\gun.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Bobble Game Mid.exe
@@ -74,15 +72,17 @@ C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.csprojAssembly
 C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.csproj.CopyComplete
 C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.exe
 C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.pdb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\ball.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\bg.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\ball.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\bg.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\head3.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\head3.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\ball2.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\frame.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\bg2.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\ball2.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\bg2.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\frame.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\ball.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\bg.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\frame.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\head.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\mou1.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\mou2.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\water.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\font\font.xnb

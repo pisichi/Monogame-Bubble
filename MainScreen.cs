@@ -26,8 +26,10 @@ namespace Bobble_Game_Mid
         Texture2D _border;
         Texture2D _gun;
         Texture2D _bubble2;
-        Texture2D _frame;
-        Rectangle _borderRect;
+        Texture2D _moutain1;
+        Texture2D _moutain2;
+        Texture2D _water;
+        SpriteFont _font;
 
 
 
@@ -59,20 +61,23 @@ namespace Bobble_Game_Mid
         {
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            _bubble = this.Content.Load<Texture2D>("ball");
-            _bg = this.Content.Load<Texture2D>("bg");
-            _border = this.Content.Load<Texture2D>("border");
-            _gun = this.Content.Load<Texture2D>("head3");
-            _bubble2 = this.Content.Load<Texture2D>("ball2");
-            _frame = this.Content.Load<Texture2D>("frame");
+            _bubble = this.Content.Load<Texture2D>("sprite/ball");
+            _bg = this.Content.Load<Texture2D>("sprite/bg");
+            _border = this.Content.Load<Texture2D>("sprite/frame");
+            _gun = this.Content.Load<Texture2D>("sprite/head");
+            _moutain1 = this.Content.Load<Texture2D>("sprite/mou1");
+            _moutain2 = this.Content.Load<Texture2D>("sprite/mou2");
+            _water = this.Content.Load<Texture2D>("sprite/water");
+
+            _font = Content.Load<SpriteFont>("font/font");
 
 
             _gameObjects = new List<GameObject>()
             {
-                new Gun(_gun)
+                new Gun(_gun,_bg)
                 {
                     Position = new Vector2(Singleton.SCREENWIDTH/2,Singleton.SCREENHEIGHT-100),
-                    Bubble = new Bubble(_bubble)
+                    Bubble = new Bubble(_bubble,_font)
                 }
             };
 
@@ -82,9 +87,9 @@ namespace Bobble_Game_Mid
                 for (int j = 0; j < 9 - (i % 2); j += 1)
                 {
 
-                    bubble[i, j] = new Bubble(_bubble)
+                    bubble[i, j] = new Bubble(_bubble, _font)
                     {
-                        Position = new Vector2(400 + 15 + j * (Singleton.BOBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), 100 + i * (Singleton.BOBBLESIZE)),
+                        Position = new Vector2(600 + 15 + j * (Singleton.BOBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), 100 + i * (Singleton.BOBBLESIZE)),
                         IsActive = false,
                         _color = GetRandomColor(),
                         Location = new Vector2(i, j),
@@ -117,7 +122,7 @@ namespace Bobble_Game_Mid
 
 
             tick += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
-            if (tick >= 30)
+            if (tick >= 20)
             {
                 Singleton._down += 60;
 
@@ -169,15 +174,27 @@ namespace Bobble_Game_Mid
             spriteBatch.Begin(); 
 
             spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
-            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(370, Singleton.BOBBLESIZE + Singleton._down, Singleton.BoardWidth + 70, Singleton.BoardHeight + 100 + Singleton._down));
 
 
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0, Singleton.SCREENHEIGHT - 130, Singleton.SCREENWIDTH, 50));
             foreach (var gameobject in _gameObjects)
             {
                 gameobject.Draw(spriteBatch);
             }
 
-            if(Singleton.Instance.CurrentGameState == Singleton.GameState.GameEnded)
+
+            spriteBatch.Draw(_moutain1, destinationRectangle: new Rectangle(0, 50, 565, 900));
+            spriteBatch.Draw(_moutain2, destinationRectangle: new Rectangle(1250, 50, 500, 860));
+
+            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(350,0 + Singleton._down - 150, Singleton.SCREENWIDTH -700 , Singleton.BoardHeight + 300 ));
+
+
+
+            for (int i = 5; i >= 0; i--)
+                spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0, Singleton.SCREENHEIGHT + 50 - i * 32, Singleton.SCREENWIDTH, 50));
+
+
+            if (Singleton.Instance.CurrentGameState == Singleton.GameState.GameEnded)
                 spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(200, 200, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
 
 

@@ -14,6 +14,8 @@ namespace Bobble_Game_Mid.gameObject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SpriteFont _font;
+
         public bool IsActive = true;
         public bool Isshooting;
 
@@ -27,7 +29,9 @@ namespace Bobble_Game_Mid.gameObject
         bool Inplace = false;
         bool TouchTop;
 
+
         int Pcount = 0;
+        int _yeet  = 1;
 
         Texture2D _texture2;
 
@@ -40,12 +44,14 @@ namespace Bobble_Game_Mid.gameObject
 
         public BubbleState _bubbleState;
 
-        public Bubble(Texture2D texture) : base(texture)
+        public Bubble(Texture2D texture,SpriteFont font) : base(texture)
         {
             Scale = new Vector2(Singleton.BOBBLESIZE / texture.Width, Singleton.BOBBLESIZE / texture.Width);
             RotationVelocity = 0.1f;
             radius = (texture.Width) / 2;
             _ObjType = ObjType.bubble;
+
+            this._font = font;
 
         }
 
@@ -65,11 +71,13 @@ namespace Bobble_Game_Mid.gameObject
             Position += Direction * LinearVelocity;
             Rotation += RotationVelocity;
             CheckColision(gameObjects, bubble);
+            
 
-            if (count > 3)
+            if (count > 4)
             {
                 bubble[(int)Location.X, (int)Location.Y] = null;
-                IsRemove = true;
+                //IsRemove = true;
+                IsActive = true;
             }
 
             //Checkneighbor(bubble);
@@ -105,7 +113,7 @@ namespace Bobble_Game_Mid.gameObject
 
             #region border colision
 
-            if (Position.X - Origin.X <= 400 && Direction.X / LinearVelocity < 400)
+            if (Position.X - Origin.X <= 600 && Direction.X / LinearVelocity < 600)
             {
                 Direction.X *= -1;
             }
@@ -118,7 +126,7 @@ namespace Bobble_Game_Mid.gameObject
                 IsCheck = false;
             }
 
-            else if (Position.X + Origin.X >= Singleton.BoardWidth + 400 && Direction.X / LinearVelocity < Singleton.BoardWidth + 400)
+            else if (Position.X + Origin.X >= Singleton.BoardWidth + 600 && Direction.X / LinearVelocity < Singleton.BoardWidth + 600)
             {
                 Direction.X *= -1;
             }
@@ -130,9 +138,9 @@ namespace Bobble_Game_Mid.gameObject
         {
             IsCheck = false;
             int i = (int)(this.Position.Y - 100 - Singleton._down + radius) / Singleton.BOBBLESIZE;
-            int j = (int)(this.Position.X - 400 - 15 + radius - ((i % 2) == 0 ? 0 : 30)) / (Singleton.BOBBLESIZE + 5);
+            int j = (int)(this.Position.X - 600 - 15 + radius - ((i % 2) == 0 ? 0 : 30)) / (Singleton.BOBBLESIZE + 5);
 
-            this.Position = new Vector2(400 + 15 + j * (Singleton.BOBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), Singleton._down + 100 + i * (Singleton.BOBBLESIZE));
+            this.Position = new Vector2(600 + 15 + j * (Singleton.BOBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), Singleton._down + 100 + i * (Singleton.BOBBLESIZE));
             bubble[i, j] = this;
             Location = new Vector2(i, j);
 
@@ -141,11 +149,13 @@ namespace Bobble_Game_Mid.gameObject
 
         private void CheckColor( Bubble[,] bubble)
         {
+
             if (IsCheck)
             {
                 return;
             }
 
+          
 
             for (int i = (int)Location.X - 1; i <= Location.X + 1; i += 1)
             {
@@ -153,13 +163,14 @@ namespace Bobble_Game_Mid.gameObject
                 for (int j = (int)Location.Y - 1; j <= Location.Y + 1; j += 1)
                 {
 
-                    if (i < 0 || j < 0 || i > 17 || j > 8)
+                    if (i < 0 || j < 0 || i > 17 || j > 8 )
                         continue;
 
                     //null handeler
-                    if (bubble[i, j] == null || bubble[i, j] == this)
+                    if (bubble[i, j] == null || bubble[i, j] == bubble[(int)Location.X, (int)Location.Y])
                         continue;
-
+                    
+                        
                     //even row
                     if (Location.X % 2 == 0 && ((i == Location.X - 1 && j == Location.Y + 1) || (i == Location.X + 1 && j == Location.Y + 1)))
                         continue;
@@ -167,9 +178,6 @@ namespace Bobble_Game_Mid.gameObject
                     //odd row
                     else if (Location.X % 2 != 0 && ((i == Location.X - 1 && j == Location.Y - 1) || (i == Location.X + 1 && j == Location.Y - 1)))
                         continue;
-
-
-
 
                     if (_color == bubble[i, j]._color)
                     {
@@ -185,22 +193,25 @@ namespace Bobble_Game_Mid.gameObject
                         else bubble[i, j].count = bubble[(int)Location.X, (int)Location.Y].count;
 
                         IsCheck = true;
+
                         bubble[i, j].CheckColor(bubble);
 
                     }
+
 
                     Console.Write("color at " + i + " " + j + " is:" + bubble[i, j]._color);
 
                 }
                 Console.WriteLine("");
             }
-
+          
             DebugPosition(bubble);
-
         }
 
         //private void Checkneighbor(Bubble[,] bubble)
         //{
+        //    int _yeet = 0;
+
         //    for (int i = (int)Location.X - 1; i <= Location.X; i += 1)
         //    {
         //        for (int j = (int)Location.Y - 1; j <= Location.Y + 1; j += 1)
@@ -209,14 +220,21 @@ namespace Bobble_Game_Mid.gameObject
         //            if (i < 0 || j < 0 || i > 17 || j > 8)
         //                continue;
 
-        //            if (bubble[i, j] == null)
+        //            if (bubble[i, j] != null)
+        //                _yeet += 1;
+
+
+
+        //            if (_yeet == 0 && (int)Location.X != 0)
         //            {
         //                bubble[(int)Location.X, (int)Location.Y] = null;
         //                IsRemove = true;
         //            }
+
         //        }
         //    }
         //}
+
         private static void DebugPosition(Bubble[,] bubble)
         {
             for (int i = 0; i < 12; i += 1)
@@ -229,7 +247,7 @@ namespace Bobble_Game_Mid.gameObject
                         continue;
                     }
 
-                    Console.Write("color at " + i + " " + j + " is:  " + bubble[i, j].count + " ");
+                    Console.Write("color at " + i + " " + j + " is:  " + bubble[i, j]._yeet + " ");
                 }
                 Console.WriteLine("");
             }
@@ -242,8 +260,11 @@ namespace Bobble_Game_Mid.gameObject
             {
                 
             }
+          
 
             spriteBatch.Draw(_texture, Position, null, _color, Rotation, Origin, 1f, SpriteEffects.None, 0);
+
+            spriteBatch.DrawString(_font, " " + count, Position, Color.Black);
 
             base.Draw(spriteBatch);
         }
