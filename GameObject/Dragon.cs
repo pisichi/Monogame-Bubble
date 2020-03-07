@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Bobble_Game_Mid.gameObject
 {
-    class Gun : GameObject
+    class Dragon : GameObject
     {
 
 
@@ -17,30 +17,20 @@ namespace Bobble_Game_Mid.gameObject
         Random rnd = new Random();
         bool shooting = true;
 
-        Texture2D _bg;
+        Texture2D _texture2;
 
         Vector2 _distance;
         
         int _currentColor;
-        Color _gunColor;
         //Texture2D _eye;
 
 
-        public Gun(Texture2D texture,Texture2D gun) : base(texture)
+        public Dragon(Texture2D texture,Texture2D texture2) : base(texture)
         {
             Rotation = -1.6f;
             _ObjType = ObjType.gun;
-            //_eye = Bubble._texture;
-            this._bg = gun;
+            this._texture2 = texture2;
         }
-
-
-        protected  void LoadContent()
-        {
-
-
-        }
-
 
 
         public override void Update(GameTime gameTime,List<GameObject> gameObjects, Bubble[,] bubble)
@@ -98,7 +88,7 @@ namespace Bobble_Game_Mid.gameObject
             Color _color = Color.White;
 
             if (shooting) {
-                _currentColor = rnd.Next(0, 2);
+                _currentColor = rnd.Next(0, 6);
                 shooting = false;
              }
 
@@ -123,7 +113,7 @@ namespace Bobble_Game_Mid.gameObject
                     _color = Color.Purple;
                     break;
             }
-            _gunColor = _color;
+            Singleton.CurrentColor = _color;
             return _color;
         }
 
@@ -133,9 +123,15 @@ namespace Bobble_Game_Mid.gameObject
 
             //spriteBatch.Draw(_eye, Position, null, _color, _rotation, Origin, 1f, SpriteEffects.None, 0);
             if (Rotation >= -1.6f)
-            spriteBatch.Draw(_texture, Position , null, Color.White, Rotation - 0.2f, Origin + new Vector2(-30, 30), 1f, SpriteEffects.None, 0);
+            {
+                spriteBatch.Draw(_texture, Position, null, Color.White, Rotation - 0.2f, Origin + new Vector2(-30, 30), 1f, SpriteEffects.None, 0);
+                spriteBatch.Draw(_texture2, Position, null, Singleton.CurrentColor, Rotation - 0.2f, Origin + new Vector2(-30, 30), 1f, SpriteEffects.None, 0);
+            }
             else
-            spriteBatch.Draw(_texture, Position, null, Color.White, Rotation, Origin + new Vector2(-30, -30), 1f, SpriteEffects.FlipVertically , 0);
+            {
+                spriteBatch.Draw(_texture, Position, null, Color.White, Rotation, Origin + new Vector2(-30, -30), 1f, SpriteEffects.FlipVertically, 0);
+                spriteBatch.Draw(_texture2, Position, null, Singleton.CurrentColor, Rotation, Origin + new Vector2(-30, -30), 1f, SpriteEffects.FlipVertically, 0);
+            }
             base.Draw(spriteBatch);
         }
     }

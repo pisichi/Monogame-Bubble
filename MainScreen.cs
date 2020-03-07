@@ -15,7 +15,7 @@ namespace Bobble_Game_Mid
         SpriteBatch spriteBatch;
 
         private List<GameObject> _gameObjects;
-        private Bubble[,] bubble = new Bubble[18, 9];
+        private Bubble[,] GameBoard = new Bubble[18, 9];
 
         float tick = 10f;
 
@@ -24,11 +24,16 @@ namespace Bobble_Game_Mid
         Texture2D _bubble;
         Texture2D _bg;
         Texture2D _border;
-        Texture2D _gun;
+        Texture2D _head;
         Texture2D _bubble2;
         Texture2D _moutain1;
         Texture2D _moutain2;
         Texture2D _water;
+        Texture2D _headColor;
+        Texture2D _body;
+        Texture2D _bodyColor;
+        Texture2D _tail;
+        Texture2D _tailColor;
         SpriteFont _font;
 
 
@@ -64,7 +69,8 @@ namespace Bobble_Game_Mid
             _bubble = this.Content.Load<Texture2D>("sprite/ball");
             _bg = this.Content.Load<Texture2D>("sprite/bg");
             _border = this.Content.Load<Texture2D>("sprite/frame");
-            _gun = this.Content.Load<Texture2D>("sprite/head");
+            _head = this.Content.Load<Texture2D>("sprite/head");
+            _headColor = this.Content.Load<Texture2D>("sprite/head_color");
             _moutain1 = this.Content.Load<Texture2D>("sprite/mou1");
             _moutain2 = this.Content.Load<Texture2D>("sprite/mou2");
             _water = this.Content.Load<Texture2D>("sprite/water");
@@ -74,7 +80,7 @@ namespace Bobble_Game_Mid
 
             _gameObjects = new List<GameObject>()
             {
-                new Gun(_gun,_bg)
+                new Dragon(_head,_headColor)
                 {
                     Position = new Vector2(Singleton.SCREENWIDTH/2,Singleton.SCREENHEIGHT-100),
                     Bubble = new Bubble(_bubble,_font)
@@ -87,16 +93,15 @@ namespace Bobble_Game_Mid
                 for (int j = 0; j < 9 - (i % 2); j += 1)
                 {
 
-                    bubble[i, j] = new Bubble(_bubble, _font)
+                    GameBoard[i, j] = new Bubble(_bubble, _font)
                     {
-                        Position = new Vector2(600 + 15 + j * (Singleton.BOBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), 100 + i * (Singleton.BOBBLESIZE)),
+                        Position = new Vector2(600 + 15 + j * (Singleton.BUBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), 100 + i * (Singleton.BUBBLESIZE)),
                         IsActive = false,
                         _color = GetRandomColor(),
                         Location = new Vector2(i, j),
-                        _bubbleState = Bubble.BubbleState.inplace,
                         Isshooting = false
                 };
-                    _gameObjects.Add(bubble[i, j]);
+                    _gameObjects.Add(GameBoard[i, j]);
                 }
 
             }
@@ -130,10 +135,10 @@ namespace Bobble_Game_Mid
                 {
                     for (int j = 0; j < 9 - (i % 2); j += 1)
                     {
-                        if (bubble[i, j] != null)
+                        if (GameBoard[i, j] != null)
                         {
-                            bubble[i, j].Position.Y += 60;
-                            if (bubble[i, j].Position.Y > Singleton.BoardHeight)
+                            GameBoard[i, j].Position.Y += 60;
+                            if (GameBoard[i, j].Position.Y > Singleton.BoardHeight)
                                 Singleton.Instance.CurrentGameState = Singleton.GameState.GameEnded;
 
                         }
@@ -145,7 +150,7 @@ namespace Bobble_Game_Mid
 
             foreach (var gameobject in _gameObjects.ToArray())
             {
-                gameobject.Update(gameTime, _gameObjects,bubble);
+                gameobject.Update(gameTime, _gameObjects,GameBoard);
             }
 
             PostUpdate();
@@ -193,10 +198,11 @@ namespace Bobble_Game_Mid
             for (int i = 5; i >= 0; i--)
                 spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0, Singleton.SCREENHEIGHT + 50 - i * 32, Singleton.SCREENWIDTH, 50));
 
-
             if (Singleton.Instance.CurrentGameState == Singleton.GameState.GameEnded)
                 spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(200, 200, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
 
+
+            spriteBatch.DrawString(_font, " " + Singleton.Score, new Vector2(0,200), Color.Black);
 
             spriteBatch.End();
 
@@ -212,7 +218,7 @@ namespace Bobble_Game_Mid
         public Color GetRandomColor()
         {
             Color _color = Color.White;
-            switch (rnd.Next(0, 2))
+            switch (rnd.Next(0, 6))
             {
                 case 0:
                     _color = Color.White;

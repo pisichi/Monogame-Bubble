@@ -86,3 +86,8 @@ C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\mou1.
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\mou2.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\water.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\font\font.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\body.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\body_color.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\head_color.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\tail.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\tail_color.xnb

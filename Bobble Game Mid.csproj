@@ -44,7 +44,7 @@
     <Compile Include="GameObject\Body.cs" />
     <Compile Include="GameObject\Bubble.cs" />
     <Compile Include="GameObject\GameObject.cs" />
-    <Compile Include="GameObject\Gun.cs" />
+    <Compile Include="GameObject\Dragon.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="MainScreen.cs" />
     <Compile Include="Program.cs" />
