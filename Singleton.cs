@@ -24,8 +24,6 @@ namespace Bobble_Game_Mid
         public enum GameState
         {
             GameMenu,
-            GameTryAgain,
-            GameBegin,
             GamePlaying,
             GamePaused,
             GameEnded

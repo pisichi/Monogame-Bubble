@@ -12,6 +12,7 @@
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/frame.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/head.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/head_color.png</File>
+    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/menuBG.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/mou1.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/mou2.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/tail.png</File>
@@ -19,6 +20,7 @@
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/water.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -45,10 +45,8 @@
     <Compile Include="GameObject\Bubble.cs" />
     <Compile Include="GameObject\GameObject.cs" />
     <Compile Include="GameObject\Dragon.cs" />
-    <Compile Include="Screen\MenuScreen.cs" />
-    <Compile Include="Screen\ScreenManager.cs" />
     <Compile Include="Singleton.cs" />
-    <Compile Include="Screen\MainScreen.cs" />
+    <Compile Include="MainScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

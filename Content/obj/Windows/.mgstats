@@ -6,7 +6,8 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/body_color.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/body_color.xnb","TextureProcessor","Texture2DContent",2647,57493,0.0468476
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/frame.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/frame.xnb","TextureProcessor","Texture2DContent",125733,9296205,0.3357444
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/head.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/head.xnb","TextureProcessor","Texture2DContent",43673,103897,0.03416
-"C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/head_color.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/head_color.xnb","TextureProcessor","Texture2DContent",27637,103897,0.0361116
+"C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/head_color.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/head_color.xnb","TextureProcessor","Texture2DContent",28223,103897,0.5596038
+"C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/menuBG.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/menuBG.xnb","TextureProcessor","Texture2DContent",796511,6403285,0.2420196
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/mou1.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/mou1.xnb","TextureProcessor","Texture2DContent",14890,1160785,0.0566048
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/mou2.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/mou2.xnb","TextureProcessor","Texture2DContent",9456,1088085,0.0507348
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/tail.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/tail.xnb","TextureProcessor","Texture2DContent",35947,370677,0.0586036

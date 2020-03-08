@@ -179,7 +179,6 @@ namespace Bobble_Game_Mid.gameObject
             //DebugPosition(bubble);
         }
 
-
         private void Checkneighbor(Bubble[,] GameBoard)
         {
             _yeet = 0;
@@ -216,7 +215,6 @@ namespace Bobble_Game_Mid.gameObject
             {
                 
             }
-          
 
             spriteBatch.Draw(_texture, Position, null, _color, Rotation, Origin, 1f, SpriteEffects.None, 0);
 
@@ -224,12 +222,6 @@ namespace Bobble_Game_Mid.gameObject
 
             base.Draw(spriteBatch);
         }
-
-
-
-
-
-
 
 
     }
