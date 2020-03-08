@@ -56,13 +56,13 @@ namespace Bobble_Game_Mid.gameObject
                 GameBoard[(int)Location.X, (int)Location.Y] = null;
                 IsRemove = true;
                 Singleton.Score += 100;
-               
             }
 
-            Checkneighbor(GameBoard);
+            
             Position += Direction * LinearVelocity;
             Rotation += RotationVelocity;
             CheckColision(gameTime,gameObjects, GameBoard);
+            Checkneighbor(GameBoard);
 
             base.Update(gameTime, gameObjects, GameBoard);
         }
@@ -82,9 +82,6 @@ namespace Bobble_Game_Mid.gameObject
                     IsActive = false;
 
                     CheckLocation(GameBoard, gameTime);
-                    CheckColor(GameBoard, gameTime);
-                    IsCheck = false;
-
 
 
                 }
@@ -123,6 +120,12 @@ namespace Bobble_Game_Mid.gameObject
             GameBoard[i, j] = this;
             Location = new Vector2(i, j);
             Console.WriteLine(i + "  |  " + j);
+
+
+            CheckColor(GameBoard, gameTime);
+            IsCheck = false;
+
+
         }
 
         private void CheckColor( Bubble[,] GameBoard, GameTime gameTime)

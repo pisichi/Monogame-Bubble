@@ -15,11 +15,15 @@
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/menuBG.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/mou1.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/mou2.png</File>
+    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/overlay.png</File>
+    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/scroll.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/tail.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/tail_color.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/water.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

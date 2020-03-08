@@ -92,3 +92,5 @@ C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\head_
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\tail.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\tail_color.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\menuBG.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\overlay.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\scroll.xnb

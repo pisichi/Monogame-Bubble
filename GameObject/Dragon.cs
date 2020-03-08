@@ -19,11 +19,8 @@ namespace Bobble_Game_Mid.gameObject
 
         Texture2D _texture2;
 
-        Vector2 _distance;
         
         int _currentColor;
-        //Texture2D _eye;
-
 
         public Dragon(Texture2D texture,Texture2D texture2) : base(texture)
         {
@@ -36,7 +33,6 @@ namespace Bobble_Game_Mid.gameObject
         public override void Update(GameTime gameTime,List<GameObject> gameObjects, Bubble[,] bubble)
         {
 
-            //Console.WriteLine(Rotation);
 
             _previouskey = _currentkey;
             _currentkey = Keyboard.GetState();
@@ -121,7 +117,7 @@ namespace Bobble_Game_Mid.gameObject
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-            //spriteBatch.Draw(_eye, Position, null, _color, _rotation, Origin, 1f, SpriteEffects.None, 0);
+          
             if (Rotation >= -1.6f)
             {
                 spriteBatch.Draw(_texture, Position, null, Color.White, Rotation - 0.2f, Origin + new Vector2(-30, 30), 1f, SpriteEffects.None, 0);
