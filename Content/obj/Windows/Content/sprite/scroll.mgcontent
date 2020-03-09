@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/scroll.png</SourceFile>
-  <SourceTime>2020-03-08T15:30:40.7055973+07:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/Content/sprite/scroll.xnb</DestFile>
-  <DestTime>2020-03-08T15:39:25.2261054+07:00</DestTime>
+  <SourceFile>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/scroll.png</SourceFile>
+  <SourceTime>2020-03-08T21:25:38.8625135+07:00</SourceTime>
+  <DestFile>C:/Users/OS/Desktop/Monogame-Bubble/Content/bin/Windows/Content/sprite/scroll.xnb</DestFile>
+  <DestTime>2020-03-08T21:28:04.2239659+07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T23:35:54+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

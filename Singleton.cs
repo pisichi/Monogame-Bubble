@@ -16,17 +16,18 @@ namespace Bobble_Game_Mid
         public const int SCREENWIDTH = BoardWidth + 1200;
         public const int SCREENHEIGHT = BoardHeight + 200;
 
-        public static int _down = 0;
+        public static int ScreenDown = 0;
         public static Color CurrentColor;
         public static int Score;
-        public int Level;
+        public static int Charge = 0;
 
         public enum GameState
         {
             GameMenu,
             GamePlaying,
             GamePaused,
-            GameEnded
+            GameLose,
+            GameWin
         }
 
         public GameState CurrentGameState;

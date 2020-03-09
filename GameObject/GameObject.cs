@@ -34,6 +34,7 @@ namespace Bobble_Game_Mid.gameObject
         public bool IsRemove = false;
 
 
+
         public Color _color;
 
         public Random rnd = new Random();
@@ -41,12 +42,13 @@ namespace Bobble_Game_Mid.gameObject
         public enum ObjType
         {
             bubble,
+            bubble_S,
             gun
         }
         public ObjType _ObjType;
 
 
-        public GameObject(Texture2D texture)
+        public GameObject(Texture2D texture) 
         {
             this._texture = texture;
             this.Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);

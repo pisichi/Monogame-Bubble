@@ -20,6 +20,7 @@ namespace Bobble_Game_Mid
 
         Random rnd = new Random();
 
+        #region Texture
         Texture2D _bubble;
         Texture2D _bg;
         Texture2D _menuBG;
@@ -36,6 +37,11 @@ namespace Bobble_Game_Mid
         Texture2D _overlay;
         Texture2D _scroll;
         SpriteFont _font;
+        #endregion
+
+
+        private KeyboardState _currentkey;
+        private KeyboardState _previouskey;
 
         public MainScreen()
         {
@@ -48,7 +54,7 @@ namespace Bobble_Game_Mid
             graphics.PreferredBackBufferWidth = Singleton.SCREENWIDTH;
             graphics.PreferredBackBufferHeight = Singleton.SCREENHEIGHT;
             graphics.ApplyChanges();
-            Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
+            Singleton.Instance.CurrentGameState = Singleton.GameState.GameMenu;
             TargetElapsedTime = TimeSpan.FromSeconds(1d / 60d);
             this.IsMouseVisible = true;
             IsFixedTimeStep = true;
@@ -57,7 +63,7 @@ namespace Bobble_Game_Mid
 
         protected override void LoadContent()
         {
-
+        #region LoadTexture
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _bubble = this.Content.Load<Texture2D>("sprite/ball");
             _bg = this.Content.Load<Texture2D>("sprite/bg");
@@ -73,13 +79,11 @@ namespace Bobble_Game_Mid
             _tail = this.Content.Load<Texture2D>("sprite/tail");
             _tailColor = this.Content.Load<Texture2D>("sprite/tail_color");
 
-
             _moutain1 = this.Content.Load<Texture2D>("sprite/mou1");
             _moutain2 = this.Content.Load<Texture2D>("sprite/mou2");
             _water = this.Content.Load<Texture2D>("sprite/water");
-
+        #endregion
             _font = Content.Load<SpriteFont>("font/font");
-
             _gameObjects = new List<GameObject>()
             {
                 new Dragon(_head,_headColor)
@@ -88,14 +92,14 @@ namespace Bobble_Game_Mid
                     Bubble = new Bubble(_bubble,_font)
                 }
             };
-
-            for (int i = 0; i < 5; i += 1)
+            for (int i = 0; i < 4; i += 1)
             {
                 for (int j = 0; j < 9 - (i % 2); j += 1)
                 {
 
                     GameBoard[i, j] = new Bubble(_bubble, _font)
                     {
+
                         Position = new Vector2(600 + 15 + j * (Singleton.BUBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), 100 + i * (Singleton.BUBBLESIZE)),
                         IsActive = false,
                         _color = GetRandomColor(),
@@ -116,6 +120,11 @@ namespace Bobble_Game_Mid
         }
         protected override void Update(GameTime gameTime)
         {
+
+            _previouskey = _currentkey;
+            _currentkey = Keyboard.GetState();
+
+
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameMenu:
@@ -127,7 +136,7 @@ namespace Bobble_Game_Mid
                 case Singleton.GameState.GamePaused:
                     UpdatePause(gameTime);
                     break;
-                case Singleton.GameState.GameEnded:
+                case Singleton.GameState.GameLose:
                     break;
             }
             PostUpdate();
@@ -138,11 +147,15 @@ namespace Bobble_Game_Mid
         private void PostUpdate()
         {
             for (int i = 0; i < _gameObjects.Count; i++)
-            {
+            { 
                 if (_gameObjects[i].IsRemove)
                 {
                     _gameObjects.RemoveAt(i);
                     i--;
+                }
+                if(_gameObjects.Count < 2)
+                {
+                    Singleton.Instance.CurrentGameState = Singleton.GameState.GameWin;
                 }
             }
         }
@@ -165,7 +178,9 @@ namespace Bobble_Game_Mid
                     DrawPlaying();
                     DrawPause();
                     break;
-                case Singleton.GameState.GameEnded:
+                case Singleton.GameState.GameLose:
+                    break;
+                case Singleton.GameState.GameWin:
                     break;
             }
             
@@ -211,16 +226,17 @@ namespace Bobble_Game_Mid
 
         private void UpdatePlaying(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
+            if (_currentkey.IsKeyDown(Keys.Escape) && _previouskey.IsKeyUp(Keys.Escape))
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePaused;
-            }
+            
 
 
             tick += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
             if (tick >= 20)
             {
-                Singleton._down += 60;
+                Singleton.ScreenDown += 60;
+                if(Singleton.Charge < 4)
+                Singleton.Charge += 2;
 
                 for (int i = 0; i < 18; i += 1)
                 {
@@ -234,15 +250,18 @@ namespace Bobble_Game_Mid
 
                         }
                     }
-
                 }
                 tick = 0;
             }
 
+
             foreach (var gameobject in _gameObjects.ToArray())
             {
+
                 gameobject.Update(gameTime, _gameObjects, GameBoard);
             }
+
+            
         }
 
         private void DrawPlaying()
@@ -255,7 +274,7 @@ namespace Bobble_Game_Mid
             }
             spriteBatch.Draw(_moutain1, destinationRectangle: new Rectangle(0, 50, 500, 900));
             spriteBatch.Draw(_moutain2, destinationRectangle: new Rectangle(1250, 50, 500, 860));
-            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(350, 0 + Singleton._down - 150, Singleton.SCREENWIDTH - 700, Singleton.BoardHeight + 300));
+            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(350, 0 + Singleton.ScreenDown - 150, Singleton.SCREENWIDTH - 700, Singleton.BoardHeight + 300));
 
             spriteBatch.Draw(_body, new Vector2(1000, 800), null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
             spriteBatch.Draw(_bodyColor, new Vector2(1000, 800), null, Singleton.CurrentColor, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
@@ -283,15 +302,13 @@ namespace Bobble_Game_Mid
 
         private void UpdateMenu(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (_currentkey.IsKeyDown(Keys.Enter))
             {
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
             }
-
-
         }
 
-        private void DrawMenu()
+        void DrawMenu()
         {
             spriteBatch.Draw(_menuBG, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
         }
@@ -300,7 +317,7 @@ namespace Bobble_Game_Mid
         private void UpdatePause(GameTime gameTime)
         {
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.A))
+            if (_currentkey.IsKeyDown(Keys.Escape) && _previouskey.IsKeyUp(Keys.Escape))
             {
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
             }

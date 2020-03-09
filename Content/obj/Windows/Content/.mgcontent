@@ -4,22 +4,22 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/font/font.spritefont</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/ball.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/bg.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/body.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/body_color.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/frame.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/head.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/head_color.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/menuBG.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/mou1.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/mou2.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/overlay.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/scroll.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/tail.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/tail_color.png</File>
-    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/water.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/font/font.spritefont</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/ball.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/bg.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/body.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/body_color.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/frame.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/head.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/head_color.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/menuBG.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/mou1.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/mou2.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/overlay.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/scroll.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/tail.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/tail_color.png</File>
+    <File>C:/Users/OS/Desktop/Monogame-Bubble/Content/sprite/water.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

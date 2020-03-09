@@ -16,6 +16,7 @@ namespace Bobble_Game_Mid.gameObject
         public Bubble Bubble;
         Random rnd = new Random();
         bool shooting = true;
+        private bool Special = false;
 
         Texture2D _texture2;
 
@@ -41,7 +42,11 @@ namespace Bobble_Game_Mid.gameObject
         
             CheckInput();
 
-            AddBubble(gameObjects);
+            if(Special)
+                Singleton.CurrentColor = GetRandomColor();
+
+
+                AddBubble(gameObjects);
 
             base.Update(gameTime, gameObjects, bubble);
 
@@ -60,6 +65,7 @@ namespace Bobble_Game_Mid.gameObject
                 if (Rotation < -0.6)
                     Rotation += MathHelper.ToRadians(RotationVelocity);
             }
+
         }
 
 
@@ -68,14 +74,33 @@ namespace Bobble_Game_Mid.gameObject
             var bubble = Bubble.Clone() as Bubble;
             bubble.Direction = this.Direction;
             bubble.Position = this.Position;
-            bubble.LinearVelocity = 0;
-            bubble._color = this.GetRandomColor();
             
+           
+
+            bubble._color = this.GetRandomColor();
+
             if (_currentkey.IsKeyDown(Keys.Space) && _previouskey.IsKeyUp(Keys.Space))
             {   
                 bubble.LinearVelocity = this.LinearVelocity *10;
+
+                if (Special)
+                {
+                    bubble.special = true;
+                }
+
                 shooting = true;
                 gameObjects.Add(bubble);
+            }
+
+            else if (_currentkey.IsKeyDown(Keys.X) && _previouskey.IsKeyUp(Keys.X))
+            {
+                bubble._color = this.GetRandomColor(); 
+                shooting = true;
+            }
+
+            else if (_currentkey.IsKeyDown(Keys.Z) && _previouskey.IsKeyUp(Keys.Z))
+            {
+                Special = true;
             }
         }
 
@@ -83,7 +108,7 @@ namespace Bobble_Game_Mid.gameObject
         {
             Color _color = Color.White;
 
-            if (shooting) {
+            if (shooting || Special) {
                 _currentColor = rnd.Next(0, 6);
                 shooting = false;
              }

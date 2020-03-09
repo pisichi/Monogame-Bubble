@@ -11,29 +11,21 @@ namespace Bobble_Game_Mid.gameObject
 {
     class Bubble : GameObject
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
         SpriteFont _font;
 
         public bool IsActive = true;
         public bool Isshooting;
+        public bool special = false;
 
 
         private bool IsCheck = false;
         public Vector2 Location;
         int _yeet;
-
-        float tick = 0f;
-
-        Texture2D _texture2;
-
-
         public Bubble(Texture2D texture,SpriteFont font) : base(texture)
         {
             Scale = new Vector2(Singleton.BUBBLESIZE / texture.Width, Singleton.BUBBLESIZE / texture.Width);
             RotationVelocity = 0.1f;
-            radius = (texture.Width / 2) +5 ;
+            radius = (texture.Width / 2);
             _ObjType = ObjType.bubble;
             this._font = font;
         }
@@ -58,7 +50,8 @@ namespace Bobble_Game_Mid.gameObject
                 Singleton.Score += 100;
             }
 
-            
+
+
             Position += Direction * LinearVelocity;
             Rotation += RotationVelocity;
             CheckColision(gameTime,gameObjects, GameBoard);
@@ -67,7 +60,9 @@ namespace Bobble_Game_Mid.gameObject
             base.Update(gameTime, gameObjects, GameBoard);
         }
 
-        private void CheckColision(GameTime gameTime, List<GameObject> gameObjects, Bubble[,] GameBoard)
+
+
+        public void CheckColision(GameTime gameTime, List<GameObject> gameObjects, Bubble[,] GameBoard)
         {
 
             foreach (var sprite in gameObjects)
@@ -78,13 +73,18 @@ namespace Bobble_Game_Mid.gameObject
                 Vector2 distance = this.Position - sprite.Position;
                 if (distance.Length() < this.radius + sprite.radius && this.IsActive && sprite._ObjType == ObjType.bubble)
                 {
-                    Console.WriteLine("I'm " + this._color + " I'm hitting " + sprite._color + " And i'm at + " + this.Position + " " + this.Location);
-                    IsActive = false;
-
-                    CheckLocation(GameBoard, gameTime);
-
-
+                    if (this.special)
+                    {
+                        sprite.count += 100;
+                    }
+                    else
+                    {
+                        Console.WriteLine("I'm " + this._color + " I'm hitting " + sprite._color + " And i'm at + " + this.Position + " " + this.Location);
+                        IsActive = false;
+                        CheckLocation(GameBoard, gameTime);
+                    }
                 }
+                
             }
 
             #region border colision
@@ -94,12 +94,20 @@ namespace Bobble_Game_Mid.gameObject
                 Direction.X *= -1;
             }
 
-            else if (IsActive && Position.Y - Origin.Y <= Singleton._down + 100 && Direction.Y / LinearVelocity < Singleton._down + 100)
+            else if (IsActive && Position.Y - Origin.Y <= Singleton.ScreenDown + 100 && Direction.Y / LinearVelocity < Singleton.ScreenDown + 100)
             {
-                IsActive = false;
-                CheckLocation(GameBoard, gameTime);
-                CheckColor(GameBoard, gameTime);
-                IsCheck = false;
+
+                if (special)
+                {
+                    IsRemove = true;
+                }
+                else
+                {
+                    IsActive = false;
+                    CheckLocation(GameBoard, gameTime);
+                    CheckColor(GameBoard, gameTime);
+                    IsCheck = false;
+                }
             }
 
             else if (Position.X + Origin.X >= Singleton.BoardWidth + 600 && Direction.X / LinearVelocity < Singleton.BoardWidth + 600)
@@ -110,13 +118,13 @@ namespace Bobble_Game_Mid.gameObject
 
         }
 
-        private void CheckLocation(Bubble[,] GameBoard, GameTime gameTime)
+        public void CheckLocation(Bubble[,] GameBoard, GameTime gameTime)
         {
             IsCheck = false;
-            int i = (int)(this.Position.Y - 100 - Singleton._down + radius) / Singleton.BUBBLESIZE;
+            int i = (int)(this.Position.Y - 100 - Singleton.ScreenDown + radius) / Singleton.BUBBLESIZE;
             int j = (int)(this.Position.X - 600 - 15 + radius - ((i % 2) == 0 ? 0 : 30)) / (Singleton.BUBBLESIZE + 5);
 
-            this.Position = new Vector2(600 + 15 + j * (Singleton.BUBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), Singleton._down + 100 + i * (Singleton.BUBBLESIZE));
+            this.Position = new Vector2(600 + 15 + j * (Singleton.BUBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), Singleton.ScreenDown + 100 + i * (Singleton.BUBBLESIZE));
             GameBoard[i, j] = this;
             Location = new Vector2(i, j);
             Console.WriteLine(i + "  |  " + j);
@@ -133,7 +141,6 @@ namespace Bobble_Game_Mid.gameObject
 
             if (IsCheck)
                 return;
-
 
             for (int i = (int)Location.X - 1; i <= Location.X + 1; i += 1)
             {
@@ -171,14 +178,10 @@ namespace Bobble_Game_Mid.gameObject
                         GameBoard[i, j].CheckColor(GameBoard, gameTime);
 
                     }
-
-
                     Console.Write("color at " + i + " " + j + " is:" + GameBoard[i, j]._color);
-
                 }
                 Console.WriteLine("");
             }
-
             //DebugPosition(bubble);
         }
 
@@ -213,12 +216,8 @@ namespace Bobble_Game_Mid.gameObject
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
-            if (Isshooting)
-            {
-                
-            }
-
+            if (special)
+                _color = Singleton.CurrentColor;
             spriteBatch.Draw(_texture, Position, null, _color, Rotation, Origin, 1f, SpriteEffects.None, 0);
 
             spriteBatch.DrawString(_font, " " + count, Position, Color.Black);
