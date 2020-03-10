@@ -20,6 +20,66 @@
 /processorParam:TextureFormat=Compressed
 /build:font/font.spritefont
 
+#begin music/hua sui yue.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:music/hua sui yue.mp3
+
+#begin sfx/bubble_pop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/bubble_pop.wav
+
+#begin sfx/hit_bubble.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/hit_bubble.wav
+
+#begin sfx/recharge.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/recharge.wav
+
+#begin sfx/score.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/score.wav
+
+#begin sfx/shoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/shoot.wav
+
+#begin sfx/shoot_special.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/shoot_special.wav
+
+#begin sfx/skill_special.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/skill_special.wav
+
+#begin sfx/skill_swap.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/skill_swap.wav
+
+#begin sfx/victory.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/victory.wav
+
 #begin sprite/ball.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -68,6 +128,18 @@
 /processorParam:TextureFormat=Color
 /build:sprite/body_color.png
 
+#begin sprite/charge.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprite/charge.png
+
 #begin sprite/frame.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -79,6 +151,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprite/frame.png
+
+#begin sprite/gauge.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprite/gauge.png
 
 #begin sprite/head.png
 /importer:TextureImporter

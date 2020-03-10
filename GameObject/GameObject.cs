@@ -11,6 +11,8 @@ namespace Bobble_Game_Mid.gameObject
 {
     class GameObject : ICloneable
     {
+
+
         public Texture2D _texture;
 
         public float Rotation;
@@ -50,6 +52,7 @@ namespace Bobble_Game_Mid.gameObject
 
         public GameObject(Texture2D texture) 
         {
+                     
             this._texture = texture;
             this.Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
         }

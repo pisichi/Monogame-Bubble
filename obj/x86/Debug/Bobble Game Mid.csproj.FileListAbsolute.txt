@@ -102,3 +102,16 @@ C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\sprite\tail.xn
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\sprite\tail_color.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\sprite\water.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\font\font.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\charge.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\gauge.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\music\hua sui yue.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\music\hua sui yue.wma
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\bubble_pop.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\hit_bubble.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\recharge.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\score.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\shoot.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\shoot_special.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\skill_special.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\skill_swap.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\victory.xnb

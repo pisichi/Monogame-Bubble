@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -12,22 +14,28 @@ namespace Bobble_Game_Mid.gameObject
     class Dragon : GameObject
     {
 
-
         public Bubble Bubble;
         Random rnd = new Random();
         bool shooting = true;
-        private bool Special = false;
+        float cooldowntime = 0;
+
+        SoundEffect _shoot;
+        SoundEffect _shoot_S;
+        SoundEffect _skill;
+        SoundEffect _skill_S;
 
         Texture2D _texture2;
-
-        
         int _currentColor;
 
-        public Dragon(Texture2D texture,Texture2D texture2) : base(texture)
+        public Dragon(Texture2D texture,Texture2D texture2, SoundEffect _shoot, SoundEffect _shoot_S, SoundEffect _skill, SoundEffect _skill_S) : base(texture)
         {
             Rotation = -1.6f;
             _ObjType = ObjType.gun;
             this._texture2 = texture2;
+            this._shoot = _shoot;
+            this._shoot_S = _shoot_S;
+            this._skill = _skill;
+            this._skill_S = _skill_S;
         }
 
 
@@ -39,10 +47,10 @@ namespace Bobble_Game_Mid.gameObject
             _currentkey = Keyboard.GetState();
 
             Direction = new Vector2((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
-        
+            cooldowntime += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
             CheckInput();
 
-            if(Special)
+            if(Singleton.Instance.ult)
                 Singleton.CurrentColor = GetRandomColor();
 
 
@@ -79,28 +87,41 @@ namespace Bobble_Game_Mid.gameObject
 
             bubble._color = this.GetRandomColor();
 
-            if (_currentkey.IsKeyDown(Keys.Space) && _previouskey.IsKeyUp(Keys.Space))
-            {   
-                bubble.LinearVelocity = this.LinearVelocity *10;
+            if (cooldowntime >= 0.8 && _currentkey.IsKeyDown(Keys.Space) && _previouskey.IsKeyUp(Keys.Space))
+            {
 
-                if (Special)
+
+                if (Singleton.Instance.ult)
                 {
+                    _shoot_S.Play();
                     bubble.special = true;
+                    bubble.LinearVelocity = this.LinearVelocity * 30;
+                    bubble.RotationVelocity = 50f;
+                }
+                else
+                {
+                    _shoot.Play();
+                    bubble.LinearVelocity = this.LinearVelocity * 15;
                 }
 
                 shooting = true;
                 gameObjects.Add(bubble);
+                cooldowntime = 0;
             }
 
-            else if (_currentkey.IsKeyDown(Keys.X) && _previouskey.IsKeyUp(Keys.X))
+            else if (_currentkey.IsKeyDown(Keys.X) && _previouskey.IsKeyUp(Keys.X) && Singleton.Charge >= 1)
             {
+                _skill.Play();
+                Singleton.Charge -= 1;
                 bubble._color = this.GetRandomColor(); 
                 shooting = true;
             }
 
-            else if (_currentkey.IsKeyDown(Keys.Z) && _previouskey.IsKeyUp(Keys.Z))
+            else if (_currentkey.IsKeyDown(Keys.Z) && _previouskey.IsKeyUp(Keys.Z) && Singleton.Charge >= 5)
             {
-                Special = true;
+                _skill_S.Play();
+                Singleton.Charge -= 5;
+                Singleton.Instance.ult = true;
             }
         }
 
@@ -108,7 +129,7 @@ namespace Bobble_Game_Mid.gameObject
         {
             Color _color = Color.White;
 
-            if (shooting || Special) {
+            if (shooting || Singleton.Instance.ult) {
                 _currentColor = rnd.Next(0, 6);
                 shooting = false;
              }

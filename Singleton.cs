@@ -20,10 +20,12 @@ namespace Bobble_Game_Mid
         public static Color CurrentColor;
         public static int Score;
         public static int Charge = 0;
+        public bool ult;
 
         public enum GameState
         {
             GameMenu,
+            GameControl,
             GamePlaying,
             GamePaused,
             GameLose,
