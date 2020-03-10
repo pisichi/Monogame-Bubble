@@ -20,6 +20,7 @@
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/body.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/body_color.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/charge.png</File>
+    <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/control.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/frame.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/gauge.png</File>
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/head.png</File>
@@ -34,6 +35,7 @@
     <File>C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/water.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

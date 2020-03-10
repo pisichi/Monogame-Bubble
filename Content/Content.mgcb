@@ -140,6 +140,18 @@
 /processorParam:TextureFormat=Color
 /build:sprite/charge.png
 
+#begin sprite/control.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprite/control.png
+
 #begin sprite/frame.png
 /importer:TextureImporter
 /processor:TextureProcessor

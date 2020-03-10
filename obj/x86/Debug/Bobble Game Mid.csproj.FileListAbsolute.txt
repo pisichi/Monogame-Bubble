@@ -115,3 +115,4 @@ C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\shoot_sp
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\skill_special.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\skill_swap.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\victory.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\control.xnb

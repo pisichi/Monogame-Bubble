@@ -41,7 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Button.cs" />
+    <Compile Include="Component\Button.cs" />
     <Compile Include="GameObject\Bubble.cs" />
     <Compile Include="GameObject\GameObject.cs" />
     <Compile Include="GameObject\Dragon.cs" />

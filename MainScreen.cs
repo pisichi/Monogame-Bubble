@@ -20,8 +20,8 @@ namespace Bobble_Game_Mid
 
         float tick = 0;
         float _tick = 0;
-        
 
+        Color _chargeColor;
         Random rnd = new Random();
 
         #region Texture
@@ -42,6 +42,7 @@ namespace Bobble_Game_Mid
         Texture2D _scroll;
         Texture2D _gauge;
         Texture2D _charge;
+        Texture2D _controlBG;
 
         SpriteFont _font;
         #endregion
@@ -95,6 +96,7 @@ namespace Bobble_Game_Mid
             _bubble = this.Content.Load<Texture2D>("sprite/ball");
             _bg = this.Content.Load<Texture2D>("sprite/bg");
             _menuBG = this.Content.Load<Texture2D>("sprite/menuBG");
+            _controlBG = this.Content.Load<Texture2D>("sprite/control");
             _overlay = this.Content.Load<Texture2D>("sprite/overlay");
             _scroll = this.Content.Load<Texture2D>("sprite/scroll");
             _border = this.Content.Load<Texture2D>("sprite/frame");
@@ -168,8 +170,23 @@ namespace Bobble_Game_Mid
 
         protected override void UnloadContent()
         {
+            for (int i = 0; i < _gameObjects.Count; i++)
+            {
+                if (_gameObjects[i].IsRemove)
+                {
+                    _gameObjects.RemoveAt(i);
+                    i--;
+                    Singleton.Score += 100;
+                    _pop.Play();
+                }
+                if (_gameObjects.Count < 2)
+                {
+                    Singleton.Instance.CurrentGameState = Singleton.GameState.GameWin;
+                }
+            }
 
         }
+
         protected override void Update(GameTime gameTime)
         {
 
@@ -187,6 +204,8 @@ namespace Bobble_Game_Mid
                 case Singleton.GameState.GamePlaying:
                     UpdatePlaying(gameTime);
                     break;
+                case Singleton.GameState.GameWin:
+                case Singleton.GameState.GameLose:
                 case Singleton.GameState.GamePaused:
                     UpdatePause(gameTime);
                     break;
@@ -194,28 +213,11 @@ namespace Bobble_Game_Mid
                     UpdateControl(gameTime);
                     break;
             }
-            PostUpdate();
+            UnloadContent();
             base.Update(gameTime);
         }
 
-        
-        private void PostUpdate()
-        {
-            for (int i = 0; i < _gameObjects.Count; i++)
-            { 
-                if (_gameObjects[i].IsRemove)
-                {
-                    _gameObjects.RemoveAt(i);
-                    i--;
-                    Singleton.Score += 100;
-                    _pop.Play();
-                }
-                if(_gameObjects.Count < 2)
-                {
-                    Singleton.Instance.CurrentGameState = Singleton.GameState.GameWin;
-                }
-            }
-        }
+       
 
         protected override void Draw(GameTime gameTime)
         {
@@ -280,11 +282,8 @@ namespace Bobble_Game_Mid
                     _color = Color.Purple;
                     break;
             }
-            _color.A = 50;
             return _color;
         }
-
-
 
         private void UpdatePlaying(GameTime gameTime)
         {
@@ -292,19 +291,26 @@ namespace Bobble_Game_Mid
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePaused;
 
             _tick += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
-            if (_tick >= 1 && Singleton.Charge < 10)
+            if (_tick >= 3 && Singleton.Charge < 12)
             {
                 _recharge.Play();
                 Singleton.Charge += 1;
                 _tick = 0;
             }
 
+          if( Singleton.Charge < 12)
+            {
+                _chargeColor = Color.Yellow;
+            }
+            else if(Singleton.Charge == 12)
+            {
+                _chargeColor = GetRandomColor();
+            }
+
             tick += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
             if (tick >= 20)
             {
                 Singleton.ScreenDown += 60;
-                if(Singleton.Charge < 4)
-                Singleton.Charge += 2;
 
                 for (int i = 0; i < 18; i += 1)
                 {
@@ -338,7 +344,7 @@ namespace Bobble_Game_Mid
             }
             spriteBatch.Draw(_moutain1, destinationRectangle: new Rectangle(0, 50, 500, 900));
             spriteBatch.Draw(_moutain2, destinationRectangle: new Rectangle(1250, 50, 500, 860));
-            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(350, 0 + Singleton.ScreenDown - 150, Singleton.SCREENWIDTH - 700, Singleton.BoardHeight + 300));
+            spriteBatch.Draw(_border, destinationRectangle: new Rectangle(385, Singleton.ScreenDown - 120, 980, Singleton.BoardHeight + 300));
 
             spriteBatch.Draw(_body, new Vector2(1000, 800), null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
             spriteBatch.Draw(_bodyColor, new Vector2(1000, 800), null, Singleton.CurrentColor, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
@@ -365,7 +371,7 @@ namespace Bobble_Game_Mid
             spriteBatch.Draw(_gauge, destinationRectangle: new Rectangle(20,750 , 350, 80));
             for (int i = 0; i < Singleton.Charge; i++)
             {
-                spriteBatch.Draw(_charge, destinationRectangle: new Rectangle(160 + i * 15, 772, 10, 35));
+                spriteBatch.Draw(_charge, destinationRectangle: new Rectangle(160 + i * 15, 772, 10, 35),color: _chargeColor);
             }
 
         }
@@ -418,16 +424,34 @@ namespace Bobble_Game_Mid
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
                 _victory.Play();
             }
-           
+            if (btn_exit.isClick == true) Exit();
+            btn_exit.update(_currentmouse, _previousmouse);
+
+            if (btn_back.isClick == true)
+            {
+                Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
+                btn_back.isClick = false;
+            }
+            btn_back.update(_currentmouse, _previousmouse);
+
         }
 
         private void DrawOverlay(string dia)
         {
             spriteBatch.Draw(_overlay, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT),color: Color.Black);
             spriteBatch.Draw(_scroll, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
-            spriteBatch.DrawString(_font, ""+ dia,  new Vector2(Singleton.SCREENWIDTH/2, Singleton.SCREENHEIGHT /2 - 50) - _font.MeasureString(dia) /2 , Color.Black);
-            spriteBatch.DrawString(_font, "Score: " + Singleton.Score, new Vector2(Singleton.SCREENWIDTH / 2, 50+Singleton.SCREENHEIGHT/2) - _font.MeasureString("Score: " + Singleton.Score) / 2, Color.Black);
+            spriteBatch.DrawString(_font, ""+ dia,  new Vector2(Singleton.SCREENWIDTH/2, Singleton.SCREENHEIGHT /2 - 100) - _font.MeasureString(dia) /2 , Color.Red);
+            spriteBatch.DrawString(_font, "Score: " + Singleton.Score, new Vector2(Singleton.SCREENWIDTH / 2, Singleton.SCREENHEIGHT/2) - _font.MeasureString("Score: " + Singleton.Score) / 2, Color.DarkRed);
+            btn_exit.Draw(spriteBatch);
+            btn_exit.set(new Vector2(Singleton.SCREENWIDTH / 2 - 60, 600), "exit");
+
+            if (dia == "Game paused")
+            {
+                btn_back.Draw(spriteBatch);
+                btn_back.set(new Vector2(Singleton.SCREENWIDTH / 2 - 90, 530), "resume");
+            }
         }
+
 
 
         private void UpdateControl(GameTime gameTime)
@@ -442,10 +466,9 @@ namespace Bobble_Game_Mid
 
         private void DrawControl()
         {
-            spriteBatch.Draw(_overlay, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT), color: Color.Black);
-            spriteBatch.Draw(_scroll, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
+            spriteBatch.Draw(_controlBG, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
             btn_back.Draw(spriteBatch);
-            btn_back.set(new Vector2(Singleton.SCREENWIDTH/2 - 75, 800) ,"back");
+            btn_back.set(new Vector2(Singleton.SCREENWIDTH/2 - 75, 750) ,"back");
 
         }
     }

@@ -27,7 +27,7 @@ namespace Bobble_Game_Mid.gameObject
         
             Scale = new Vector2(Singleton.BUBBLESIZE / texture.Width, Singleton.BUBBLESIZE / texture.Width);
             RotationVelocity = 0.1f;
-            radius = (texture.Width / 2);
+            radius = (texture.Width / 2 );
             _ObjType = ObjType.bubble;
             this._font = font;
             this._hit = _hit;
@@ -221,7 +221,7 @@ namespace Bobble_Game_Mid.gameObject
                 _color = Singleton.CurrentColor;
             spriteBatch.Draw(_texture, Position, null, _color, Rotation, Origin, 1f, SpriteEffects.None, 0);
 
-           // spriteBatch.DrawString(_font, " " + count, Position, Color.Black);
+           spriteBatch.DrawString(_font, " " + count, Position, Color.Black);
 
             base.Draw(spriteBatch);
         }

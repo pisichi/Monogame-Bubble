@@ -1,5 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/User/Desktop/Bobble Game Mid/Content/font/font.spritefont","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/font/font.xnb","FontDescriptionProcessor","SpriteFontContent",2008,70673,0.3181291
+"C:/Users/User/Desktop/Bobble Game Mid/Content/font/font.spritefont","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/font/font.xnb","FontDescriptionProcessor","SpriteFontContent",2017,136209,0.3258485
 "C:/Users/User/Desktop/Bobble Game Mid/Content/music/hua sui yue.mp3","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/music/hua sui yue.xnb","SongProcessor","SongContent",2926509,129,1.732783
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sfx/bubble_pop.wav","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sfx/bubble_pop.xnb","SoundEffectProcessor","SoundEffectContent",108266,108293,0.2832427
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sfx/hit_bubble.wav","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sfx/hit_bubble.xnb","SoundEffectProcessor","SoundEffectContent",60750,60777,0.1505978
@@ -15,6 +15,7 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/body.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/body.xnb","TextureProcessor","Texture2DContent",14684,57493,0.3129992
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/body_color.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/body_color.xnb","TextureProcessor","Texture2DContent",2647,57493,0.0468476
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/charge.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/charge.xnb","TextureProcessor","Texture2DContent",1641,1489,0.0165914
+"C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/control.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/control.xnb","TextureProcessor","Texture2DContent",143837,6403285,0.5887709
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/frame.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/frame.xnb","TextureProcessor","Texture2DContent",125733,9296205,0.3357444
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/gauge.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/gauge.xnb","TextureProcessor","Texture2DContent",9991,160085,0.0185435
 "C:/Users/User/Desktop/Bobble Game Mid/Content/sprite/head.png","C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sprite/head.xnb","TextureProcessor","Texture2DContent",43673,103897,0.03416

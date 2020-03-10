@@ -117,10 +117,10 @@ namespace Bobble_Game_Mid.gameObject
                 shooting = true;
             }
 
-            else if (_currentkey.IsKeyDown(Keys.Z) && _previouskey.IsKeyUp(Keys.Z) && Singleton.Charge >= 5)
+            else if (_currentkey.IsKeyDown(Keys.Z) && _previouskey.IsKeyUp(Keys.Z) && Singleton.Charge >= 12)
             {
                 _skill_S.Play();
-                Singleton.Charge -= 5;
+                Singleton.Charge -= 12;
                 Singleton.Instance.ult = true;
             }
         }
