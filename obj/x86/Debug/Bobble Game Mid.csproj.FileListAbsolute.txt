@@ -71,7 +71,6 @@ C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.csproj.CopyCom
 C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.exe
 C:\Users\OS\Desktop\Monogame-Bubble\obj\x86\Debug\Bobble Game Mid.pdb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\ball.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\bg.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\frame.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\head.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\mou1.xnb
@@ -83,8 +82,6 @@ C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\body_
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\head_color.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\tail.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\tail_color.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\menuBG.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\overlay.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\scroll.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\sprite\ball.xnb
 C:\Users\OS\Desktop\Monogame-Bubble\bin\Windows\x86\Debug\Content\sprite\bg.xnb
@@ -115,4 +112,13 @@ C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\shoot_sp
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\skill_special.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\skill_swap.xnb
 C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sfx\victory.xnb
-C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\control.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\image\about.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\image\bg.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\image\control.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\image\menuBG.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\image\overlay.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\cloud1.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\cloud2.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\cloud3.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\cloud4.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Debug\Content\sprite\wave.xnb

@@ -26,6 +26,7 @@ namespace Bobble_Game_Mid
         {
             GameMenu,
             GameControl,
+            GameAbout,
             GamePlaying,
             GamePaused,
             GameLose,

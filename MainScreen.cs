@@ -36,6 +36,11 @@ namespace Bobble_Game_Mid
         Texture2D _moutain1;
         Texture2D _moutain2;
         Texture2D _water;
+        Texture2D _cloud1;
+        Texture2D _cloud2;
+        Texture2D _cloud3;
+        Texture2D _cloud4;
+        Texture2D _wave;
         Texture2D _headColor;
         Texture2D _body;
         Texture2D _bodyColor;
@@ -46,6 +51,7 @@ namespace Bobble_Game_Mid
         Texture2D _gauge;
         Texture2D _charge;
         Texture2D _controlBG;
+        Texture2D _aboutBG;
 
         SpriteFont _font;
         #endregion
@@ -69,6 +75,7 @@ namespace Bobble_Game_Mid
         Button btn_resume;
         Button btn_back;
         Button btn_control;
+        Button btn_about;
         #endregion
 
         private KeyboardState _currentkey;
@@ -98,32 +105,38 @@ namespace Bobble_Game_Mid
         {
         #region Load
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            _bubble = this.Content.Load<Texture2D>("sprite/ball");
-            _bg = this.Content.Load<Texture2D>("sprite/bg");
-            _menuBG = this.Content.Load<Texture2D>("sprite/menuBG");
-            _controlBG = this.Content.Load<Texture2D>("sprite/control");
-            _overlay = this.Content.Load<Texture2D>("sprite/overlay");
-            _scroll = this.Content.Load<Texture2D>("sprite/scroll");
-            _border = this.Content.Load<Texture2D>("sprite/frame");
+            _bubble = Content.Load<Texture2D>("sprite/ball");
+            _bg = Content.Load<Texture2D>("image/bg");
+            _menuBG = Content.Load<Texture2D>("image/menuBG");
+            _controlBG = Content.Load<Texture2D>("image/control");
+            _aboutBG = Content.Load<Texture2D>("image/about");
+            _overlay = Content.Load<Texture2D>("image/overlay");
+            _scroll = Content.Load<Texture2D>("sprite/scroll");
+            _border = Content.Load<Texture2D>("sprite/frame");
 
-            _head = this.Content.Load<Texture2D>("sprite/head");
-            _headColor = this.Content.Load<Texture2D>("sprite/head_color");
-            _body = this.Content.Load<Texture2D>("sprite/body");
-            _bodyColor = this.Content.Load<Texture2D>("sprite/body_color");
-            _tail = this.Content.Load<Texture2D>("sprite/tail");
-            _tailColor = this.Content.Load<Texture2D>("sprite/tail_color");
+            _head = Content.Load<Texture2D>("sprite/head");
+            _headColor = Content.Load<Texture2D>("sprite/head_color");
+            _body = Content.Load<Texture2D>("sprite/body");
+            _bodyColor = Content.Load<Texture2D>("sprite/body_color");
+            _tail = Content.Load<Texture2D>("sprite/tail");
+            _tailColor = Content.Load<Texture2D>("sprite/tail_color");
 
-            _moutain1 = this.Content.Load<Texture2D>("sprite/mou1");
-            _moutain2 = this.Content.Load<Texture2D>("sprite/mou2");
-            _water = this.Content.Load<Texture2D>("sprite/water");
+            _moutain1 = Content.Load<Texture2D>("sprite/mou1");
+            _moutain2 = Content.Load<Texture2D>("sprite/mou2");
+            _water = Content.Load<Texture2D>("sprite/water");
+            _wave = Content.Load<Texture2D>("sprite/wave");
+            _cloud1 = Content.Load<Texture2D>("sprite/cloud1");
+            _cloud2 =Content.Load<Texture2D>("sprite/cloud2");
+            _cloud3 = Content.Load<Texture2D>("sprite/cloud3");
+            _cloud4 = Content.Load<Texture2D>("sprite/cloud4");
 
-            _gauge = this.Content.Load<Texture2D>("sprite/gauge");
-            _charge = this.Content.Load<Texture2D>("sprite/charge");
+            _gauge = Content.Load<Texture2D>("sprite/gauge");
+            _charge = Content.Load<Texture2D>("sprite/charge");
             
             
             _font = Content.Load<SpriteFont>("font/font");
 
-            music = this.Content.Load<Song>("music/hua sui yue");
+            music = Content.Load<Song>("music/hua sui yue");
 
             _pop = Content.Load<SoundEffect>("sfx/bubble_pop");
             _hit = Content.Load<SoundEffect>("sfx/hit_bubble");
@@ -136,14 +149,15 @@ namespace Bobble_Game_Mid
             _victory = Content.Load<SoundEffect>("sfx/victory");
 
             #endregion
-            //MediaPlayer.Play(music);
-            //MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(music);
+            MediaPlayer.IsRepeating = true;
 
            btn_play = new Button(_charge,_font, graphics.GraphicsDevice);
            btn_exit = new Button(_charge,_font, graphics.GraphicsDevice);
            btn_resume = new Button(_charge,_font, graphics.GraphicsDevice);
            btn_back = new Button(_charge,_font, graphics.GraphicsDevice);
            btn_control = new Button(_charge,_font, graphics.GraphicsDevice);
+           btn_about = new Button(_charge,_font, graphics.GraphicsDevice);
 
             _gameObjects = new List<GameObject>()
             {
@@ -215,7 +229,8 @@ namespace Bobble_Game_Mid
                     UpdateOverlay(gameTime);
                     break;
                 case Singleton.GameState.GameControl:
-                    UpdateControl(gameTime);
+                case Singleton.GameState.GameAbout:
+                    UpdateImage(gameTime);
                     break;
             }
             UnloadContent();
@@ -232,8 +247,10 @@ namespace Bobble_Game_Mid
                     DrawMenu();
                     break;
                 case Singleton.GameState.GameControl:
-                    DrawMenu();
-                    DrawControl();
+                    DrawImage(_controlBG);
+                    break;
+                case Singleton.GameState.GameAbout:
+                    DrawImage(_aboutBG);
                     break;
                 case Singleton.GameState.GamePlaying:
                     DrawPlaying();
@@ -288,7 +305,6 @@ namespace Bobble_Game_Mid
             return _color;
         }
 
-
         private void UpdatePlaying(GameTime gameTime)
         {
             if (_currentkey.IsKeyDown(Keys.Escape) && _previouskey.IsKeyUp(Keys.Escape))
@@ -307,6 +323,7 @@ namespace Bobble_Game_Mid
             {
                 _chargeColor = Color.Yellow;
             }
+
             else if(Singleton.Charge == 12)
             {
                 _chargeColor = GetRandomColor();
@@ -320,7 +337,7 @@ namespace Bobble_Game_Mid
                 wiggle.X += rnd.Next(0, 2);
                 wiggle.Y += rnd.Next(0, 2);
                 if (wiggle.X >= 2) wiggle.X -= rnd.Next(0, 2);
-                if (wiggle.Y >= 2) wiggle.Y -= rnd.Next(0, 2);
+                if (wiggle.Y >= 1) wiggle.Y -= rnd.Next(0, 2);
                 _wiggle = 0;
             }
 
@@ -338,8 +355,6 @@ namespace Bobble_Game_Mid
                         if (GameBoard[i, j] != null)
                         {
                             GameBoard[i, j].Position.Y += 60;
-                            if (GameBoard[i, j].Position.Y > Singleton.BoardHeight)
-                                Singleton.Instance.CurrentGameState = Singleton.GameState.GameLose;
                         }
                     }
                 }
@@ -356,7 +371,14 @@ namespace Bobble_Game_Mid
         private void DrawPlaying()
         {
             spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
-            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 + (int)wiggle.Y / 2, Singleton.SCREENHEIGHT - 130 + (int)wiggle.Y, Singleton.SCREENWIDTH, 50));
+
+
+            spriteBatch.Draw(_cloud1, destinationRectangle: new Rectangle(150, 50, 150, 80));
+            spriteBatch.Draw(_cloud2, destinationRectangle: new Rectangle(450, 20, 150, 50));
+            spriteBatch.Draw(_cloud3, destinationRectangle: new Rectangle(1500, 10, 200, 80));
+            spriteBatch.Draw(_cloud4, destinationRectangle: new Rectangle(1200, 80, 150, 80));
+
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 + (int)wiggle.Y / 2, Singleton.SCREENHEIGHT - 130 + (int)wiggle.Y/3, Singleton.SCREENWIDTH, 50));
             foreach (var gameobject in _gameObjects)
             {
                 gameobject.Draw(spriteBatch);
@@ -369,18 +391,20 @@ namespace Bobble_Game_Mid
             spriteBatch.Draw(_bodyColor, new Vector2(1000, 800), null, Singleton.CurrentColor, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
 
             spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 , Singleton.SCREENHEIGHT - 90, Singleton.SCREENWIDTH, 50));
-            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 - (int)wiggle.X, Singleton.SCREENHEIGHT - 100 - (int)wiggle.Y / 2, Singleton.SCREENWIDTH, 50));
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 - (int)wiggle.X, Singleton.SCREENHEIGHT - 100 - (int)wiggle.Y / 3, Singleton.SCREENWIDTH, 50));
+            spriteBatch.Draw(_wave, destinationRectangle: new Rectangle(500 - (int)wiggle.X,800 - (int)wiggle.Y / 3, 100, 100));
 
 
             spriteBatch.Draw(_tail, new Vector2 (1300,670 ), Color.White);
             spriteBatch.Draw(_tailColor, new Vector2(1300, 670), Singleton.CurrentColor);
-
-            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 + (int)wiggle.X , Singleton.SCREENHEIGHT - 70 + (int)wiggle.Y /2 , Singleton.SCREENWIDTH, 50));
+           
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 + (int)wiggle.X , Singleton.SCREENHEIGHT - 70 + (int)wiggle.Y /3 , Singleton.SCREENWIDTH, 50));
 
             spriteBatch.Draw(_body, new Vector2(300, 850),null, Color.White, 0f, Vector2.Zero, 1.25f, SpriteEffects.None, 0);
             spriteBatch.Draw(_bodyColor, new Vector2(300, 850),null, Singleton.CurrentColor, 0f, Vector2.Zero, 1.25f, SpriteEffects.None, 0);
 
-            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 + (int)wiggle.X /2, Singleton.SCREENHEIGHT - 40 - (int)wiggle.Y, Singleton.SCREENWIDTH, 50));
+            spriteBatch.Draw(_wave, destinationRectangle: new Rectangle(1250 - (int)wiggle.X, 800 - (int)wiggle.Y / 3, 100, 100),effects: SpriteEffects.FlipHorizontally);
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 + (int)wiggle.X /2, Singleton.SCREENHEIGHT - 40 - (int)wiggle.Y/3, Singleton.SCREENWIDTH, 50));
 
             spriteBatch.Draw(_body, new Vector2(800, 850), null, Color.White, 0.3f, Vector2.Zero, 1.5f, SpriteEffects.FlipHorizontally, 0);
             spriteBatch.Draw(_bodyColor, new Vector2(800, 850), null, Singleton.CurrentColor, 0.3f, Vector2.Zero, 1.5f, SpriteEffects.FlipHorizontally, 0);
@@ -394,7 +418,6 @@ namespace Bobble_Game_Mid
             }
 
         }
-
 
         private void UpdateMenu(GameTime gameTime)
 
@@ -415,6 +438,13 @@ namespace Bobble_Game_Mid
             }
             btn_control.update(_currentmouse, _previousmouse);
 
+            if (btn_about.isClick == true)
+            {
+                Singleton.Instance.CurrentGameState = Singleton.GameState.GameAbout;
+                btn_about.isClick = false;
+            }
+            btn_about.update(_currentmouse, _previousmouse);
+
             if (btn_exit.isClick == true) Exit();
             btn_exit.update(_currentmouse, _previousmouse);
 
@@ -424,13 +454,14 @@ namespace Bobble_Game_Mid
         {
             spriteBatch.Draw(_menuBG, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
             btn_play.Draw(spriteBatch);
-            btn_play.set(new Vector2(425,350),"play");
+            btn_play.set(new Vector2(400,450),"play");
             btn_control.Draw(spriteBatch);
-            btn_control.set(new Vector2(425, 450), "control");
+            btn_control.set(new Vector2(400, 550), "control");
+            btn_about.Draw(spriteBatch);
+            btn_about.set(new Vector2(400, 650), "about");
             btn_exit.Draw(spriteBatch);
-            btn_exit.set(new Vector2(425, 550), "exit");
+            btn_exit.set(new Vector2(400, 750), "exit");
         }
-
 
         private void UpdateOverlay(GameTime gameTime)
         {
@@ -468,8 +499,7 @@ namespace Bobble_Game_Mid
             }
         }
 
-
-        private void UpdateControl(GameTime gameTime)
+        private void UpdateImage(GameTime gameTime)
         {
             if (btn_back.isClick == true)
             {
@@ -479,9 +509,9 @@ namespace Bobble_Game_Mid
             btn_back.update(_currentmouse, _previousmouse);
         }
 
-        private void DrawControl()
+        private void DrawImage(Texture2D image)
         {
-            spriteBatch.Draw(_controlBG, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
+            spriteBatch.Draw(image, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
             btn_back.Draw(spriteBatch);
             btn_back.set(new Vector2(Singleton.SCREENWIDTH/2 - 75, 750) ,"back");
 

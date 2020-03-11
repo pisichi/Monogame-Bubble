@@ -43,28 +43,27 @@ namespace Bobble_Game_Mid.gameObject
             {
                 LinearVelocity = 0;
                 RotationVelocity = 0;
+                if(Position.Y > Singleton.BoardHeight)
+                     Singleton.Instance.CurrentGameState = Singleton.GameState.GameLose;
             }
 
-           
            if (count >= 4)
             {
                 GameBoard[(int)Location.X, (int)Location.Y] = null;
                 IsRemove = true;
-                
             }
 
 
             Position += Direction * LinearVelocity;
             Rotation += RotationVelocity;
-            CheckColision(gameTime,gameObjects, GameBoard);
+            CheckColision(gameObjects, GameBoard);
             Checkneighbor(GameBoard);
-
-            base.Update(gameTime, gameObjects, GameBoard);
+            base.Update(gameTime,gameObjects, GameBoard);
         }
 
 
 
-        public void CheckColision(GameTime gameTime, List<GameObject> gameObjects, Bubble[,] GameBoard)
+        public void CheckColision(List<GameObject> gameObjects, Bubble[,] GameBoard)
         {
 
             foreach (var sprite in gameObjects)
@@ -85,7 +84,7 @@ namespace Bobble_Game_Mid.gameObject
                         Console.WriteLine("I'm " + this._color + " I'm hitting " + sprite._color + " And i'm at + " + this.Position + " " + this.Location);
                         IsActive = false;
                         _hit.Play();
-                        CheckLocation(GameBoard, gameTime);
+                        CheckLocation(GameBoard);
                     }
                 }
                 
@@ -110,7 +109,7 @@ namespace Bobble_Game_Mid.gameObject
                 else
                 {
                     IsActive = false;
-                    CheckLocation(GameBoard, gameTime);
+                    CheckLocation(GameBoard);
                 }
             }
 
@@ -123,23 +122,21 @@ namespace Bobble_Game_Mid.gameObject
 
         }
 
-        public void CheckLocation(Bubble[,] GameBoard, GameTime gameTime)
+        public void CheckLocation(Bubble[,] GameBoard)
         {
-            //IsCheck = false;
             int i = (int)(this.Position.Y - 100 - Singleton.ScreenDown + radius) / Singleton.BUBBLESIZE;
             int j = (int)(this.Position.X - 600 - 15 + radius - ((i % 2) == 0 ? 0 : 30)) / (Singleton.BUBBLESIZE + 5);
 
             this.Position = new Vector2(600 + 15 + j * (Singleton.BUBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), Singleton.ScreenDown + 100 + i * (Singleton.BUBBLESIZE));
             GameBoard[i, j] = this;
             Location = new Vector2(i, j);
-            Console.WriteLine(i + "  |  " + j);
-            CheckColor(GameBoard, gameTime);
+            //Console.WriteLine(i + "  |  " + j);
+            CheckColor(GameBoard);
             IsCheck = false;
-
 
         }
 
-        private void CheckColor( Bubble[,] GameBoard, GameTime gameTime)
+        private void CheckColor( Bubble[,] GameBoard)
         {
 
             if (IsCheck)
@@ -175,15 +172,13 @@ namespace Bobble_Game_Mid.gameObject
                             GameBoard[(int)Location.X, (int)Location.Y].count = GameBoard[i, j].count;
 
                         else GameBoard[i, j].count = GameBoard[(int)Location.X, (int)Location.Y].count;
-
                         IsCheck = true;
-
-                        GameBoard[i, j].CheckColor(GameBoard, gameTime);
+                        GameBoard[i, j].CheckColor(GameBoard);
 
                     }
-                    Console.Write("color at " + i + " " + j + " is:" + GameBoard[i, j]._color);
+                    //Console.Write("color at " + i + " " + j + " is:" + GameBoard[i, j]._color);
                 }
-                Console.WriteLine("");
+                //Console.WriteLine("");
             }
         }
 
@@ -220,9 +215,7 @@ namespace Bobble_Game_Mid.gameObject
             if (special)
                 _color = Singleton.CurrentColor;
             spriteBatch.Draw(_texture, Position, null, _color, Rotation, Origin, 1f, SpriteEffects.None, 0);
-
-           spriteBatch.DrawString(_font, " " + count, Position, Color.Black);
-
+           //spriteBatch.DrawString(_font, " " + count, Position, Color.Black);
             base.Draw(spriteBatch);
         }
 
