@@ -17,9 +17,12 @@ namespace Bobble_Game_Mid
         private List<GameObject> _gameObjects;
         private Bubble[,] GameBoard = new Bubble[18, 9];
         private Vector2 textSize;
+        private Vector2 wiggle;
 
         float tick = 0;
-        float _tick = 0;
+        float _chargeTimer = 0;
+        float _wiggle;
+  
 
         Color _chargeColor;
         Random rnd = new Random();
@@ -60,11 +63,13 @@ namespace Bobble_Game_Mid
         SoundEffect _victory;
         #endregion
 
+        #region button
         Button btn_play;
         Button btn_exit;
         Button btn_resume;
         Button btn_back;
         Button btn_control;
+        #endregion
 
         private KeyboardState _currentkey;
         private KeyboardState _previouskey;
@@ -207,7 +212,7 @@ namespace Bobble_Game_Mid
                 case Singleton.GameState.GameWin:
                 case Singleton.GameState.GameLose:
                 case Singleton.GameState.GamePaused:
-                    UpdatePause(gameTime);
+                    UpdateOverlay(gameTime);
                     break;
                 case Singleton.GameState.GameControl:
                     UpdateControl(gameTime);
@@ -216,8 +221,6 @@ namespace Bobble_Game_Mid
             UnloadContent();
             base.Update(gameTime);
         }
-
-       
 
         protected override void Draw(GameTime gameTime)
         {
@@ -285,17 +288,19 @@ namespace Bobble_Game_Mid
             return _color;
         }
 
+
         private void UpdatePlaying(GameTime gameTime)
         {
             if (_currentkey.IsKeyDown(Keys.Escape) && _previouskey.IsKeyUp(Keys.Escape))
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePaused;
 
-            _tick += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
-            if (_tick >= 3 && Singleton.Charge < 12)
+
+            _chargeTimer += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
+            if (_chargeTimer >= 3 && Singleton.Charge < 12)
             {
                 _recharge.Play();
                 Singleton.Charge += 1;
-                _tick = 0;
+                _chargeTimer = 0;
             }
 
           if( Singleton.Charge < 12)
@@ -306,6 +311,20 @@ namespace Bobble_Game_Mid
             {
                 _chargeColor = GetRandomColor();
             }
+
+
+            _wiggle += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
+
+            if (_wiggle > 0.3)
+            {
+                wiggle.X += rnd.Next(0, 2);
+                wiggle.Y += rnd.Next(0, 2);
+                if (wiggle.X >= 2) wiggle.X -= rnd.Next(0, 2);
+                if (wiggle.Y >= 2) wiggle.Y -= rnd.Next(0, 2);
+                _wiggle = 0;
+            }
+
+
 
             tick += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
             if (tick >= 20)
@@ -337,7 +356,7 @@ namespace Bobble_Game_Mid
         private void DrawPlaying()
         {
             spriteBatch.Draw(_bg, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
-            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0, Singleton.SCREENHEIGHT - 130, Singleton.SCREENWIDTH, 50));
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 + (int)wiggle.Y / 2, Singleton.SCREENHEIGHT - 130 + (int)wiggle.Y, Singleton.SCREENWIDTH, 50));
             foreach (var gameobject in _gameObjects)
             {
                 gameobject.Draw(spriteBatch);
@@ -349,20 +368,20 @@ namespace Bobble_Game_Mid
             spriteBatch.Draw(_body, new Vector2(1000, 800), null, Color.White, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
             spriteBatch.Draw(_bodyColor, new Vector2(1000, 800), null, Singleton.CurrentColor, 0f, Vector2.Zero, 1, SpriteEffects.None, 0);
 
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 , Singleton.SCREENHEIGHT - 90, Singleton.SCREENWIDTH, 50));
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 - (int)wiggle.X, Singleton.SCREENHEIGHT - 100 - (int)wiggle.Y / 2, Singleton.SCREENWIDTH, 50));
 
-            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0, Singleton.SCREENHEIGHT - 100 , Singleton.SCREENWIDTH, 50));
 
             spriteBatch.Draw(_tail, new Vector2 (1300,670 ), Color.White);
             spriteBatch.Draw(_tailColor, new Vector2(1300, 670), Singleton.CurrentColor);
 
-
-            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0, Singleton.SCREENHEIGHT - 70 , Singleton.SCREENWIDTH, 50));
-
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 + (int)wiggle.X , Singleton.SCREENHEIGHT - 70 + (int)wiggle.Y /2 , Singleton.SCREENWIDTH, 50));
 
             spriteBatch.Draw(_body, new Vector2(300, 850),null, Color.White, 0f, Vector2.Zero, 1.25f, SpriteEffects.None, 0);
             spriteBatch.Draw(_bodyColor, new Vector2(300, 850),null, Singleton.CurrentColor, 0f, Vector2.Zero, 1.25f, SpriteEffects.None, 0);
 
-            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0, Singleton.SCREENHEIGHT - 40 , Singleton.SCREENWIDTH, 50));
+            spriteBatch.Draw(_water, destinationRectangle: new Rectangle(0 + (int)wiggle.X /2, Singleton.SCREENHEIGHT - 40 - (int)wiggle.Y, Singleton.SCREENWIDTH, 50));
+
             spriteBatch.Draw(_body, new Vector2(800, 850), null, Color.White, 0.3f, Vector2.Zero, 1.5f, SpriteEffects.FlipHorizontally, 0);
             spriteBatch.Draw(_bodyColor, new Vector2(800, 850), null, Singleton.CurrentColor, 0.3f, Vector2.Zero, 1.5f, SpriteEffects.FlipHorizontally, 0);
 
@@ -375,8 +394,6 @@ namespace Bobble_Game_Mid
             }
 
         }
-
-
 
 
         private void UpdateMenu(GameTime gameTime)
@@ -415,8 +432,7 @@ namespace Bobble_Game_Mid
         }
 
 
-
-        private void UpdatePause(GameTime gameTime)
+        private void UpdateOverlay(GameTime gameTime)
         {
 
             if (_currentkey.IsKeyDown(Keys.Escape) && _previouskey.IsKeyUp(Keys.Escape))
@@ -451,7 +467,6 @@ namespace Bobble_Game_Mid
                 btn_back.set(new Vector2(Singleton.SCREENWIDTH / 2 - 90, 530), "resume");
             }
         }
-
 
 
         private void UpdateControl(GameTime gameTime)

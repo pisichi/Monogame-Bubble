@@ -125,7 +125,7 @@ namespace Bobble_Game_Mid.gameObject
 
         public void CheckLocation(Bubble[,] GameBoard, GameTime gameTime)
         {
-            IsCheck = false;
+            //IsCheck = false;
             int i = (int)(this.Position.Y - 100 - Singleton.ScreenDown + radius) / Singleton.BUBBLESIZE;
             int j = (int)(this.Position.X - 600 - 15 + radius - ((i % 2) == 0 ? 0 : 30)) / (Singleton.BUBBLESIZE + 5);
 
