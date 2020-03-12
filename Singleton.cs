@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bubble_Game_Mid.gameObject;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Bobble_Game_Mid
+namespace Bubble_Game_Mid
 {
     public class Singleton
     {
@@ -21,6 +22,9 @@ namespace Bobble_Game_Mid
         public static int Score;
         public static int Charge;
         public bool ult;
+
+        public Bubble[,] GameBoard = new Bubble[18, 9];
+
 
         public enum GameState
         {

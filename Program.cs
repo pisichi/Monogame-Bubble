@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bobble_Game_Mid
+namespace Bubble_Game_Mid
 {
 #if WINDOWS || LINUX
     /// <summary>

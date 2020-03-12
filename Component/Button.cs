@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bobble_Game_Mid
+namespace Bubble_Game_Mid
 {
     //https://www.youtube.com/watch?v=54L_w0PiRa8&t=655s
 

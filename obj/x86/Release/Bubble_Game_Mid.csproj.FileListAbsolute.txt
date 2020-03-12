@@ -1,0 +1,59 @@
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\ball.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\body.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\body_color.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\charge.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\cloud1.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\cloud2.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\cloud3.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\cloud4.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\frame.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\gauge.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\head.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\head_color.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\mou1.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\mou2.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\scroll.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\tail.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\tail_color.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\water.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sprite\wave.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\music\hua sui yue.wma
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\music\hua sui yue.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sfx\bubble_pop.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sfx\hit_bubble.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sfx\recharge.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sfx\score.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sfx\shoot.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sfx\shoot_special.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sfx\skill_special.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sfx\skill_swap.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\sfx\victory.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\image\about.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\image\bg.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\image\control.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\image\menuBG.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\image\overlay.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Content\font\font.xnb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Bobble Game Mid.exe
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\Bobble Game Mid.pdb
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\MonoGame.Framework.dll
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.MediaFoundation.dll
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.dll
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.XAudio2.dll
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.DXGI.dll
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.Direct3D11.dll
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.Direct2D1.dll
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.XInput.dll
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\MonoGame.Framework.xml
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.MediaFoundation.xml
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.xml
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.XAudio2.xml
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.DXGI.xml
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.Direct3D11.xml
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.Direct2D1.xml
+C:\Users\User\Desktop\Bobble Game Mid\bin\Windows\x86\Release\SharpDX.XInput.xml
+C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Release\Bubble_Game_Mid.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Release\Bubble_Game_Mid.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Release\Bubble_Game_Mid.csproj.CopyComplete
+C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Release\Bobble Game Mid.exe
+C:\Users\User\Desktop\Bobble Game Mid\obj\x86\Release\Bobble Game Mid.pdb

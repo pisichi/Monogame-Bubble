@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Bobble_Game_Mid.gameObject
+namespace Bubble_Game_Mid.gameObject
 {
     class Dragon : GameObject
     {
@@ -39,7 +39,7 @@ namespace Bobble_Game_Mid.gameObject
         }
 
 
-        public override void Update(GameTime gameTime,List<GameObject> gameObjects, Bubble[,] bubble)
+        public override void Update(GameTime gameTime,List<GameObject> gameObjects)
         {
 
 
@@ -56,7 +56,7 @@ namespace Bobble_Game_Mid.gameObject
 
                 AddBubble(gameObjects);
 
-            base.Update(gameTime, gameObjects, bubble);
+            base.Update(gameTime, gameObjects);
 
 
         }

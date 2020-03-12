@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bobble_Game_Mid.gameObject
+namespace Bubble_Game_Mid.gameObject
 {
-    class GameObject : ICloneable
+   public class GameObject : ICloneable
     {
 
 
@@ -59,7 +59,7 @@ namespace Bobble_Game_Mid.gameObject
 
 
 
-        public virtual void Update(GameTime gameTime, List<GameObject> gameObjects , Bubble[,] bubble)
+        public virtual void Update(GameTime gameTime, List<GameObject> gameObjects)
         {
 
         }

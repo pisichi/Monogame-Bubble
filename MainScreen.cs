@@ -3,19 +3,18 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using Bobble_Game_Mid.gameObject;
+using Bubble_Game_Mid.gameObject;
 using System.Threading;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 
-namespace Bobble_Game_Mid
+namespace Bubble_Game_Mid
 {
      class MainScreen : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private List<GameObject> _gameObjects;
-        private Bubble[,] GameBoard = new Bubble[18, 9];
         private Vector2 textSize;
         private Vector2 wiggle;
 
@@ -96,7 +95,7 @@ namespace Bobble_Game_Mid
             graphics.ApplyChanges();
             Singleton.Instance.CurrentGameState = Singleton.GameState.GameMenu;
             TargetElapsedTime = TimeSpan.FromSeconds(1d / 60d);
-            this.IsMouseVisible = true;
+            IsMouseVisible = true;
             IsFixedTimeStep = true;
             base.Initialize();
         }
@@ -164,7 +163,7 @@ namespace Bobble_Game_Mid
                 new Dragon(_head,_headColor,_shoot,_shoot_S,_skill,_skill_S)
                 {
                     Position = new Vector2(Singleton.SCREENWIDTH/2,Singleton.SCREENHEIGHT-100),
-                    Bubble = new Bubble(_bubble,_font,_hit)
+                    Bubble = new Bubble(_bubble,_hit)
                 }
             };
             for (int i = 0; i < 5; i += 1)
@@ -172,19 +171,21 @@ namespace Bobble_Game_Mid
                 for (int j = 0; j < 9 - (i % 2); j += 1)
                 {
 
-                    GameBoard[i, j] = new Bubble(_bubble, _font,_hit)
+                    Singleton.Instance.GameBoard[i, j] = new Bubble(_bubble,_hit)
                     {
 
                         Position = new Vector2(600 + 15 + j * (Singleton.BUBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), 100 + i * (Singleton.BUBBLESIZE)),
-                        IsActive = false,
+                        active = false,
                         _color = GetRandomColor(),
                         Location = new Vector2(i, j),
                         Isshooting = false
                 };
-                    _gameObjects.Add(GameBoard[i, j]);
+                    _gameObjects.Add(Singleton.Instance.GameBoard[i, j]);
                 }
 
             }
+
+
         }
 
         protected override void UnloadContent()
@@ -352,9 +353,9 @@ namespace Bobble_Game_Mid
                 {
                     for (int j = 0; j < 9 - (i % 2); j += 1)
                     {
-                        if (GameBoard[i, j] != null)
+                        if (Singleton.Instance.GameBoard[i, j] != null)
                         {
-                            GameBoard[i, j].Position.Y += 60;
+                            Singleton.Instance.GameBoard[i, j].Position.Y += 60;
                         }
                     }
                 }
@@ -363,7 +364,7 @@ namespace Bobble_Game_Mid
 
             foreach (var gameobject in _gameObjects.ToArray())
             {
-                gameobject.Update(gameTime, _gameObjects, GameBoard);
+                gameobject.Update(gameTime, _gameObjects);
             }
 
         }
@@ -428,11 +429,16 @@ namespace Bobble_Game_Mid
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
             }
 
-            if(btn_play.isClick == true) Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
-            btn_play.update(_currentmouse, _previousmouse);
+            if (btn_play.isClick == true)
+            {
+                Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
+                _hit.Play();
+            }
+                btn_play.update(_currentmouse, _previousmouse);
 
             if (btn_control.isClick == true)
             {
+                _hit.Play();
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GameControl;
                 btn_control.isClick = false;
             }
@@ -440,6 +446,8 @@ namespace Bobble_Game_Mid
 
             if (btn_about.isClick == true)
             {
+                _hit.Play();
+
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GameAbout;
                 btn_about.isClick = false;
             }
@@ -469,13 +477,15 @@ namespace Bobble_Game_Mid
             if (_currentkey.IsKeyDown(Keys.Escape) && _previouskey.IsKeyUp(Keys.Escape))
             {
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
-                _victory.Play();
+                
             }
             if (btn_exit.isClick == true) Exit();
             btn_exit.update(_currentmouse, _previousmouse);
 
             if (btn_back.isClick == true)
             {
+                _hit.Play();
+
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
                 btn_back.isClick = false;
             }
@@ -503,6 +513,7 @@ namespace Bobble_Game_Mid
         {
             if (btn_back.isClick == true)
             {
+                 _hit.Play();
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GameMenu;
                 btn_back.isClick = false;
             }
