@@ -15,11 +15,11 @@ namespace Bubble_Game_Mid
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private List<GameObject> _gameObjects;
-        private Vector2 textSize;
         private Vector2 wiggle;
 
         float tick = 0;
         float _chargeTimer = 0;
+        float _comboTimer = 0;
         float _wiggle;
   
 
@@ -46,11 +46,13 @@ namespace Bubble_Game_Mid
         Texture2D _tail;
         Texture2D _tailColor;
         Texture2D _overlay;
+        Texture2D _overlay_s;
         Texture2D _scroll;
         Texture2D _gauge;
         Texture2D _charge;
         Texture2D _controlBG;
         Texture2D _aboutBG;
+        Texture2D _brush;
 
         SpriteFont _font;
         #endregion
@@ -95,6 +97,7 @@ namespace Bubble_Game_Mid
             graphics.ApplyChanges();
             Singleton.Instance.CurrentGameState = Singleton.GameState.GameMenu;
             TargetElapsedTime = TimeSpan.FromSeconds(1d / 60d);
+            
             IsMouseVisible = true;
             IsFixedTimeStep = true;
             base.Initialize();
@@ -110,6 +113,7 @@ namespace Bubble_Game_Mid
             _controlBG = Content.Load<Texture2D>("image/control");
             _aboutBG = Content.Load<Texture2D>("image/about");
             _overlay = Content.Load<Texture2D>("image/overlay");
+            _overlay_s = Content.Load<Texture2D>("image/overlay_s");
             _scroll = Content.Load<Texture2D>("sprite/scroll");
             _border = Content.Load<Texture2D>("sprite/frame");
 
@@ -130,6 +134,7 @@ namespace Bubble_Game_Mid
             _cloud4 = Content.Load<Texture2D>("sprite/cloud4");
 
             _gauge = Content.Load<Texture2D>("sprite/gauge");
+            _brush = Content.Load<Texture2D>("sprite/brush");
             _charge = Content.Load<Texture2D>("sprite/charge");
             
             
@@ -151,12 +156,12 @@ namespace Bubble_Game_Mid
             MediaPlayer.Play(music);
             MediaPlayer.IsRepeating = true;
 
-           btn_play = new Button(_charge,_font, graphics.GraphicsDevice);
-           btn_exit = new Button(_charge,_font, graphics.GraphicsDevice);
-           btn_resume = new Button(_charge,_font, graphics.GraphicsDevice);
-           btn_back = new Button(_charge,_font, graphics.GraphicsDevice);
-           btn_control = new Button(_charge,_font, graphics.GraphicsDevice);
-           btn_about = new Button(_charge,_font, graphics.GraphicsDevice);
+           btn_play = new Button(_font, graphics.GraphicsDevice);
+           btn_exit = new Button(_font, graphics.GraphicsDevice);
+           btn_resume = new Button(_font, graphics.GraphicsDevice);
+           btn_back = new Button(_font, graphics.GraphicsDevice);
+           btn_control = new Button(_font, graphics.GraphicsDevice);
+           btn_about = new Button(_font, graphics.GraphicsDevice);
 
             _gameObjects = new List<GameObject>()
             {
@@ -196,7 +201,10 @@ namespace Bubble_Game_Mid
                 {
                     _gameObjects.RemoveAt(i);
                     i--;
-                    Singleton.Score += 100;
+                    Singleton.Instance.Score += 100 * 1 + (Singleton.Instance.combo/5);
+                    Singleton.Instance.combo += 1;
+                    _comboTimer = 0;
+
                     _pop.Play();
                 }
                 if (_gameObjects.Count < 2)
@@ -311,21 +319,27 @@ namespace Bubble_Game_Mid
             if (_currentkey.IsKeyDown(Keys.Escape) && _previouskey.IsKeyUp(Keys.Escape))
                 Singleton.Instance.CurrentGameState = Singleton.GameState.GamePaused;
 
+            _comboTimer += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
+            if(_comboTimer >= 5)
+            {
+                
+                Singleton.Instance.combo = 0 ;
+            }
 
             _chargeTimer += gameTime.ElapsedGameTime.Ticks / (float)TimeSpan.TicksPerSecond;
-            if (_chargeTimer >= 3 && Singleton.Charge < 12)
+            if (_chargeTimer >= 3 && Singleton.Instance.Charge < 12)
             {
                 _recharge.Play();
-                Singleton.Charge += 1;
+                Singleton.Instance.Charge += 1;
                 _chargeTimer = 0;
             }
 
-          if( Singleton.Charge < 12)
+          if( Singleton.Instance.Charge < 12)
             {
                 _chargeColor = Color.Yellow;
             }
 
-            else if(Singleton.Charge == 12)
+            else if(Singleton.Instance.Charge == 12)
             {
                 _chargeColor = GetRandomColor();
             }
@@ -410,12 +424,25 @@ namespace Bubble_Game_Mid
             spriteBatch.Draw(_body, new Vector2(800, 850), null, Color.White, 0.3f, Vector2.Zero, 1.5f, SpriteEffects.FlipHorizontally, 0);
             spriteBatch.Draw(_bodyColor, new Vector2(800, 850), null, Singleton.CurrentColor, 0.3f, Vector2.Zero, 1.5f, SpriteEffects.FlipHorizontally, 0);
 
-            spriteBatch.DrawString(_font, " " + Singleton.Score, new Vector2(200, 700), Color.White);
 
+            spriteBatch.Draw(_brush, destinationRectangle: new Rectangle(100, 670, 250, 80));
+            spriteBatch.DrawString(_font, " " + Singleton.Instance.Score, new Vector2(200, 680), Color.White, 0, Vector2.Zero, 1.2f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(_font, "X " +  (1 + Singleton.Instance.combo / 5) , new Vector2(230, 650) + _font.MeasureString("" + Singleton.Instance.Score), Color.White, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0);
+
+            if (Singleton.Instance.combo > 0)
+            {
+                spriteBatch.DrawString(_font, "Combo " + Singleton.Instance.combo, new Vector2(200, 640), Color.Red, 0, Vector2.Zero, 0.8f, SpriteEffects.None, 0);
+                spriteBatch.DrawString(_font, "Combo " + Singleton.Instance.combo, new Vector2(200-3, 640-3), Color.White, 0, Vector2.Zero, 0.8f, SpriteEffects.None, 0);
+            }
             spriteBatch.Draw(_gauge, destinationRectangle: new Rectangle(20,750 , 350, 80));
-            for (int i = 0; i < Singleton.Charge; i++)
+            for (int i = 0; i < Singleton.Instance.Charge; i++)
             {
                 spriteBatch.Draw(_charge, destinationRectangle: new Rectangle(160 + i * 15, 772, 10, 35),color: _chargeColor);
+            }
+
+            if (Singleton.Instance.ult)
+            {
+                spriteBatch.Draw(_overlay_s, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT),color: GetRandomColor());
             }
 
         }
@@ -498,7 +525,7 @@ namespace Bubble_Game_Mid
             spriteBatch.Draw(_overlay, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT),color: Color.Black);
             spriteBatch.Draw(_scroll, destinationRectangle: new Rectangle(0, 0, Singleton.SCREENWIDTH, Singleton.SCREENHEIGHT));
             spriteBatch.DrawString(_font, ""+ dia,  new Vector2(Singleton.SCREENWIDTH/2, Singleton.SCREENHEIGHT /2 - 100) - _font.MeasureString(dia) /2 , Color.Red);
-            spriteBatch.DrawString(_font, "Score: " + Singleton.Score, new Vector2(Singleton.SCREENWIDTH / 2, Singleton.SCREENHEIGHT/2) - _font.MeasureString("Score: " + Singleton.Score) / 2, Color.DarkRed);
+            spriteBatch.DrawString(_font, "Score: " + Singleton.Instance.Score, new Vector2(Singleton.SCREENWIDTH / 2, Singleton.SCREENHEIGHT/2) - _font.MeasureString("Score: " + Singleton.Instance.Score) / 2, Color.DarkRed);
             btn_exit.Draw(spriteBatch);
             btn_exit.set(new Vector2(Singleton.SCREENWIDTH / 2 - 60, 600), "exit");
 

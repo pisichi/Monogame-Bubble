@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Bobble Game Mid/Content/sfx/skill_special.wav</SourceFile>
-  <SourceTime>2019-08-20T03:43:25.7548606+07:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/Content/sfx/skill_special.xnb</DestFile>
-  <DestTime>2020-03-09T19:20:35.8906216+07:00</DestTime>
+  <SourceFile>C:/Users/OS/Desktop/Monogame-Bubble/Content/sfx/skill_special.wav</SourceFile>
+  <SourceTime>2020-03-13T07:47:53.3017469+07:00</SourceTime>
+  <DestFile>C:/Users/OS/Desktop/Monogame-Bubble/Content/bin/Windows/Content/sfx/skill_special.xnb</DestFile>
+  <DestTime>2020-03-13T08:34:11.9654922+07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-12-08T23:35:54+07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

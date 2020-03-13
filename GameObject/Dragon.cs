@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -109,18 +105,18 @@ namespace Bubble_Game_Mid.gameObject
                 cooldowntime = 0;
             }
 
-            else if (_currentkey.IsKeyDown(Keys.X) && _previouskey.IsKeyUp(Keys.X) && Singleton.Charge >= 1)
+            else if (_currentkey.IsKeyDown(Keys.X) && _previouskey.IsKeyUp(Keys.X) && Singleton.Instance.Charge >= 1)
             {
                 _skill.Play();
-                Singleton.Charge -= 1;
+                Singleton.Instance.Charge -= 1;
                 bubble._color = this.GetRandomColor(); 
                 shooting = true;
             }
 
-            else if (_currentkey.IsKeyDown(Keys.Z) && _previouskey.IsKeyUp(Keys.Z) && Singleton.Charge >= 12)
+            else if (_currentkey.IsKeyDown(Keys.Z) && _previouskey.IsKeyUp(Keys.Z) && Singleton.Instance.Charge >= 12)
             {
                 _skill_S.Play();
-                Singleton.Charge -= 12;
+                Singleton.Instance.Charge -= 12;
                 Singleton.Instance.ult = true;
             }
         }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/User/Desktop/Bobble Game Mid/Content/sfx/recharge.wav</SourceFile>
-  <SourceTime>2019-08-20T03:43:25.1876549+07:00</SourceTime>
-  <DestFile>C:/Users/User/Desktop/Bobble Game Mid/Content/bin/Windows/sfx/recharge.xnb</DestFile>
-  <DestTime>2020-03-09T19:15:36.2940953+07:00</DestTime>
+  <SourceFile>C:/Users/OS/Desktop/Monogame-Bubble/Content/sfx/recharge.wav</SourceFile>
+  <SourceTime>2020-03-13T07:47:53.2887386+07:00</SourceTime>
+  <DestFile>C:/Users/OS/Desktop/Monogame-Bubble/Content/bin/Windows/sfx/recharge.xnb</DestFile>
+  <DestTime>2020-03-13T09:15:54.5004858+07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2018-12-08T23:35:54+07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

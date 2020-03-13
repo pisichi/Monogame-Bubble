@@ -2,10 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bubble_Game_Mid;
 using Microsoft.Xna.Framework.Audio;
 
 namespace Bubble_Game_Mid.gameObject
@@ -28,7 +24,7 @@ namespace Bubble_Game_Mid.gameObject
         
             Scale = new Vector2(Singleton.BUBBLESIZE / texture.Width, Singleton.BUBBLESIZE / texture.Width);
             RotationVelocity = 0.1f;
-            radius = (texture.Width / 2) + 5;
+            radius = (texture.Width / 2);
             _ObjType = ObjType.bubble;
             this._hit = _hit;
         }
@@ -145,7 +141,7 @@ namespace Bubble_Game_Mid.gameObject
             this.Position = new Vector2(600 + 15 + j * (Singleton.BUBBLESIZE + 5) + ((i % 2) == 0 ? 0 : 30), Singleton.ScreenDown + 100 + i * (Singleton.BUBBLESIZE));
             Singleton.Instance.GameBoard[i, j] = this;
             Location = new Vector2(i, j);
-            //Console.WriteLine(i + "  |  " + j);
+            Console.WriteLine(i + "  |  " + j);
             CheckColor();
             IsCheck = false;
 
@@ -192,9 +188,9 @@ namespace Bubble_Game_Mid.gameObject
                         Singleton.Instance.GameBoard[i, j].CheckColor();
 
                     }
-                    //Console.Write("color at " + i + " " + j + " is:" + GameBoard[i, j]._color);
+                    Console.Write("color at " + i + " " + j + " is:" + Singleton.Instance.GameBoard[i, j]._color);
                 }
-                //Console.WriteLine("");
+                Console.WriteLine("");
             }
             IsCheck = false;
         }

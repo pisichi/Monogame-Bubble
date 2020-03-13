@@ -2,10 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bubble_Game_Mid
 {
@@ -13,7 +9,6 @@ namespace Bubble_Game_Mid
 
     class Button
     {
-        Texture2D _texture;
         Vector2 _position;
         Rectangle _rectangle;
         SpriteFont _font;
@@ -23,9 +18,8 @@ namespace Bubble_Game_Mid
 
         public Vector2 size;
 
-        public Button(Texture2D texture,SpriteFont font, GraphicsDevice graphics)
+        public Button(SpriteFont font, GraphicsDevice graphics)
         {
-            _texture = texture;
             _font = font;
            
         }
@@ -66,8 +60,6 @@ namespace Bubble_Game_Mid
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(_texture, _rectangle, Color.Black);
-            //spriteBatch.DrawString(SpriteFont spriteFont, string text, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth);
             spriteBatch.DrawString(_font, "" + _label, _position, Color.Red, 0, Vector2.Zero, 1.5f, SpriteEffects.None, 0);
             spriteBatch.DrawString(_font,""+_label, _position, _color, 0, Vector2.Zero, 1.5f, SpriteEffects.None,0);
         }

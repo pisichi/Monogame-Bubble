@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bubble_Game_Mid.gameObject;
+﻿using Bubble_Game_Mid.gameObject;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+
 
 namespace Bubble_Game_Mid
 {
@@ -19,8 +14,10 @@ namespace Bubble_Game_Mid
 
         public static int ScreenDown;
         public static Color CurrentColor;
-        public static int Score;
-        public static int Charge;
+        public int Score;
+        public int Charge;
+
+        public int combo;
         public bool ult;
 
         public Bubble[,] GameBoard = new Bubble[18, 9];
