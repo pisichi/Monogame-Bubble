@@ -7,13 +7,13 @@ A  Bubble shooting game created with Monogame engine
 
   
 ## How to play
+![App Screenshot](https://i.imgur.com/0bhGsZa.png)
 
-![App Screenshot](https://i.imgur.com/2idQogm.png)
 
 
-## Characters and skills
+## Screenshots
 
 ![App Screenshot](https://i.imgur.com/fpuHCnp.png)
 ![App Screenshot](https://i.imgur.com/n3Tgm67.png)
-![App Screenshot](https://i.imgur.com/0bhGsZa.png)
+
   
